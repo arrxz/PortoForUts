@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Profil Rekayasa & Eksplorasi Teknik - Agna Aryaputra Rahman"
+    />
+    <meta name="author" content="Agna Aryaputra Rahman" />
+    <title>About | Agna Aryaputra Rahman</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-FOUC Theme Script -->
+    <script>
+      (function () {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+          } else {
+            document.documentElement.classList.remove('light');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+          }
+        } catch (e) {
+          // fallback
+        }
+      })();
+    </script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body
+    class="bg-bg text-ink font-sans selection:bg-accent selection:text-accent-ink overflow-x-hidden min-h-screen flex flex-col justify-between"
+  >
+    <!-- Header & Navigasi -->
+    <header class="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-line py-3.5">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <a
+          href="/index.html"
+          class="font-mono text-sm tracking-tight text-ink font-semibold flex items-center gap-2 no-underline"
+        >
+          <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
+          <span>AGNA ARYAPUTRA</span>
+          <span class="text-ink-muted text-xs hidden sm:inline">[ABOUT]</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-7">
+          <a href="/index.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">Home</a>
+          <a href="/work.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">Work</a>
+          <a href="/about.html" class="text-accent text-xs font-mono font-semibold tracking-wider transition uppercase">About</a>
+          <a href="/contact.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            class="theme-toggle-btn inline-flex items-center justify-center w-8 h-8 rounded border border-line bg-surface hover:border-accent text-ink transition-colors cursor-pointer"
+            aria-label="Ganti tema"
+            title="Ganti tema"
+          >
+            <svg class="theme-icon-sun w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="theme-icon-moon w-3.5 h-3.5 text-accent hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+          <a
+            href="/contact.html"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-accent bg-accent text-accent-ink text-xs font-mono font-semibold hover:bg-accent-hover transition no-underline"
+          >
+            <span>Hubungi</span>
+          </a>
+        </div>
+
+        <button
+          class="md:hidden border border-line text-ink px-2.5 py-1 rounded text-xs font-mono font-medium hover:border-accent transition"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileNav"
+          aria-controls="mobileNav"
+          aria-label="Buka menu navigasi"
+        >
+          MENU
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Offcanvas Nav (Bootstrap 10%) -->
+    <div
+      class="offcanvas offcanvas-end bg-surface text-ink border-l border-line"
+      tabindex="-1"
+      id="mobileNav"
+      aria-labelledby="mobileNavLabel"
+    >
+      <div class="offcanvas-header border-b border-line p-4 flex items-center justify-between">
+        <h5 class="offcanvas-title font-mono text-xs font-bold text-ink tracking-wider" id="mobileNavLabel">
+          NAVIGASI [PLOTTER]
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Tutup"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-6 flex flex-col gap-4 font-mono text-sm">
+        <a href="/index.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">01. HOME</a>
+        <a href="/work.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">02. WORK</a>
+        <a href="/about.html" class="text-accent py-2 border-b border-line">03. ABOUT</a>
+        <a href="/contact.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">04. CONTACT</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main data-barba="wrapper" class="flex-grow">
+      <div data-barba="container" data-barba-namespace="about" class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <!-- Section Header -->
+        <div class="about-reveal mb-10 pb-6 border-b border-line">
+          <div class="font-mono text-xs text-accent font-semibold uppercase tracking-wider mb-2">
+            PROFIL TEKNIK // 02
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-ink mb-3">
+            Agna Aryaputra Rahman
+          </h1>
+          <p class="text-sm sm:text-base text-ink-muted leading-relaxed max-w-2xl">
+            Mahasiswa Teknik Informatika yang berfokus pada rekayasa sistem tertanam (*embedded systems*), kendali mesin CNC, dan pengembangan sistem web berperforma tinggi.
+          </p>
+        </div>
+
+        <!-- Kolom Profil & Filosofi Kerja -->
+        <div class="about-reveal grid md:grid-cols-12 gap-8 mb-12">
+          <div class="md:col-span-7 space-y-4 text-sm text-ink-muted leading-relaxed">
+            <h2 class="font-mono text-xs text-accent font-semibold uppercase tracking-wider">
+              PRINSIP REKAYASA
+            </h2>
+            <p>
+              <strong class="text-ink">Turning ideas into real working systems.</strong> Saya meyakini bahwa teknologi terbaik adalah teknologi yang dapat diwujudkan secara fisik dan teruji kinerjanya, bukan sekadar konsep di atas kertas.
+            </p>
+            <p>
+              Eksplorasi saya mencakup perakitan perangkat keras dari nol—mulai dari perakitan rangka mekanik, kalibrasi driver motor stepper, modifikasi firmware mikrokontroler (C/C++), hingga pemrograman pipeline vektor perangkat lunak untuk otomasi mesin.
+            </p>
+            <p>
+              Dalam pengembangan web, saya memprioritaskan kode yang bersih, minim kebergantungan yang tidak perlu, rendering yang cepat, dan struktur antarmuka yang jujur sesuai fungsinya.
+            </p>
+          </div>
+
+          <div class="md:col-span-5">
+            <div class="plotter-grid-border p-6 bg-surface/50 font-mono text-xs space-y-4">
+              <div class="border-b border-line pb-3">
+                <span class="text-ink-muted block text-[10px] uppercase">STATUS AKADEMIK</span>
+                <span class="text-ink font-semibold">Mahasiswa Teknik Informatika (Semester 3)</span>
+              </div>
+              <div class="border-b border-line pb-3">
+                <span class="text-ink-muted block text-[10px] uppercase">FOKUS UTAMA</span>
+                <span class="text-ink font-semibold">Embedded Hardware &bull; CNC Automation</span>
+              </div>
+              <div>
+                <span class="text-ink-muted block text-[10px] uppercase">KONTRIBUSI KODE</span>
+                <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="text-accent underline font-semibold">
+                  github.com/arrxz &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bidang Keahlian Teknis Riil -->
+        <section class="about-reveal">
+          <div class="font-mono text-xs text-accent font-semibold uppercase tracking-wider mb-4">
+            LINGKUP KEMAMPUAN TEKNIS
+          </div>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="plotter-card p-5">
+              <h3 class="font-mono text-xs font-bold text-ink uppercase mb-2">01. HARDWARE &amp; FIRMWARE</h3>
+              <p class="text-xs text-ink-muted leading-relaxed">
+                Pemrograman mikrokontroler Arduino Uno, konfigurasi firmware GRBL v1.1, pemetaan pin I/O, sinyal pulsa PWM untuk servo RC, dan interfacing sensor.
+              </p>
+            </div>
+            <div class="plotter-card p-5">
+              <h3 class="font-mono text-xs font-bold text-ink uppercase mb-2">02. CNC &amp; MEKANIK</h3>
+              <p class="text-xs text-ink-muted leading-relaxed">
+                Kalibrasi motor stepper NEMA 17 dengan driver A4988, penghitungan step/mm, transmisi timing belt GT2, dan penanganan jitter mekanik.
+              </p>
+            </div>
+            <div class="plotter-card p-5">
+              <h3 class="font-mono text-xs font-bold text-ink uppercase mb-2">03. WEB ENGINEERING</h3>
+              <p class="text-xs text-ink-muted leading-relaxed">
+                HTML5 semantik, CSS modern dengan Tailwind CSS v4, TypeScript, Vite multi-page bundler, dan transisi halaman Barba.js yang terstruktur.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer Plotter Minimalis -->
+    <footer class="border-t border-line py-8 bg-surface/50 font-mono text-xs">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-ink font-semibold">AGNA ARYAPUTRA RAHMAN</span>
+          <span class="text-ink-muted block text-[11px] mt-0.5">Pen Plotter &bull; Embedded Systems &bull; Web</span>
+        </div>
+        <div class="flex items-center gap-6 text-ink-muted">
+          <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition underline">
+            GitHub
+          </a>
+          <a href="/contact.html" class="hover:text-accent transition underline">
+            Email
+          </a>
+          <span class="text-ink-muted/50">&copy; <span id="current-year">2026</span></span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button
+      type="button"
+      id="btn-back-to-top"
+      aria-label="Kembali ke atas"
+      class="fixed bottom-6 right-6 w-9 h-9 border border-line bg-surface text-ink hover:border-accent hover:text-accent flex items-center justify-center font-mono text-xs opacity-0 pointer-events-none translate-y-4 transition-all z-40"
+    >
+      &uarr;
+    </button>
+  </body>
+</html>

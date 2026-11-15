@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kontak & Kanal Komunikasi - Agna Aryaputra Rahman"
+    />
+    <meta name="author" content="Agna Aryaputra Rahman" />
+    <title>Contact | Agna Aryaputra Rahman</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-FOUC Theme Script -->
+    <script>
+      (function () {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+          } else {
+            document.documentElement.classList.remove('light');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+          }
+        } catch (e) {
+          // fallback
+        }
+      })();
+    </script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body
+    class="bg-bg text-ink font-sans selection:bg-accent selection:text-accent-ink overflow-x-hidden min-h-screen flex flex-col justify-between"
+  >
+    <!-- Header & Navigasi -->
+    <header class="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-line py-3.5">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <a
+          href="/index.html"
+          class="font-mono text-sm tracking-tight text-ink font-semibold flex items-center gap-2 no-underline"
+        >
+          <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
+          <span>AGNA ARYAPUTRA</span>
+          <span class="text-ink-muted text-xs hidden sm:inline">[CONTACT]</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-7">
+          <a href="/index.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">Home</a>
+          <a href="/work.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">Work</a>
+          <a href="/about.html" class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase">About</a>
+          <a href="/contact.html" class="text-accent text-xs font-mono font-semibold tracking-wider transition uppercase">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            class="theme-toggle-btn inline-flex items-center justify-center w-8 h-8 rounded border border-line bg-surface hover:border-accent text-ink transition-colors cursor-pointer"
+            aria-label="Ganti tema"
+            title="Ganti tema"
+          >
+            <svg class="theme-icon-sun w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="theme-icon-moon w-3.5 h-3.5 text-accent hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
+
+        <button
+          class="md:hidden border border-line text-ink px-2.5 py-1 rounded text-xs font-mono font-medium hover:border-accent transition"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileNav"
+          aria-controls="mobileNav"
+          aria-label="Buka menu navigasi"
+        >
+          MENU
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Offcanvas Nav (Bootstrap 10%) -->
+    <div
+      class="offcanvas offcanvas-end bg-surface text-ink border-l border-line"
+      tabindex="-1"
+      id="mobileNav"
+      aria-labelledby="mobileNavLabel"
+    >
+      <div class="offcanvas-header border-b border-line p-4 flex items-center justify-between">
+        <h5 class="offcanvas-title font-mono text-xs font-bold text-ink tracking-wider" id="mobileNavLabel">
+          NAVIGASI [PLOTTER]
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Tutup"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-6 flex flex-col gap-4 font-mono text-sm">
+        <a href="/index.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">01. HOME</a>
+        <a href="/work.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">02. WORK</a>
+        <a href="/about.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">03. ABOUT</a>
+        <a href="/contact.html" class="text-accent py-2 border-b border-line">04. CONTACT</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main data-barba="wrapper" class="flex-grow">
+      <div data-barba="container" data-barba-namespace="contact" class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <!-- Section Header -->
+        <div class="contact-reveal mb-10 pb-6 border-b border-line">
+          <div class="font-mono text-xs text-accent font-semibold uppercase tracking-wider mb-2">
+            KOMUNIKASI // 03
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-ink mb-3">
+            Kanal Komunikasi Langsung
+          </h1>
+          <p class="text-sm sm:text-base text-ink-muted leading-relaxed max-w-2xl">
+            Hubungi saya untuk diskusi teknis, kolaborasi proyek perangkat keras atau otomasi CNC, dan pertanyaan akademik.
+          </p>
+        </div>
+
+        <div class="contact-reveal grid md:grid-cols-12 gap-8 mb-12">
+          <!-- Kolom Informasi Kontak -->
+          <div class="md:col-span-5 space-y-6">
+            <div class="plotter-card p-6">
+              <span class="font-mono text-xs text-accent font-semibold block mb-2">EMAIL RESMI</span>
+              <p class="text-xs text-ink-muted leading-relaxed mb-4">
+                Klik tombol di bawah untuk menyalin alamat email secara langsung ke clipboard:
+              </p>
+              <!-- React Island: CopyEmailButton -->
+              <div
+                data-island="CopyEmailButton"
+                data-props='{"email":"arrxz.dev@gmail.com"}'
+              ></div>
+            </div>
+
+            <div class="plotter-card p-6 font-mono text-xs space-y-3">
+              <span class="text-accent font-semibold block uppercase">PROFIL REPOSITORI</span>
+              <div class="flex items-center justify-between border-b border-line pb-2">
+                <span class="text-ink-muted">GitHub:</span>
+                <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="text-ink hover:text-accent underline font-semibold">
+                  github.com/arrxz &rarr;
+                </a>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-ink-muted">Repositori Proyek:</span>
+                <a href="https://github.com/arrxz/PortoForUts" target="_blank" rel="noopener noreferrer" class="text-accent underline font-semibold">
+                  PortoForUts &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulir Pesan -->
+          <div class="md:col-span-7">
+            <div class="plotter-grid-border p-6 sm:p-8 bg-surface/50">
+              <span class="font-mono text-xs text-accent font-semibold block mb-4 uppercase">KIRIM PESAN LANGSUNG</span>
+              <form class="space-y-4" onsubmit="event.preventDefault(); alert('Terima kasih. Pesan terkirim.');">
+                <div>
+                  <label for="contact-name" class="block font-mono text-xs text-ink mb-1">NAMA ANDA</label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    required
+                    class="w-full px-3 py-2 bg-bg border border-line focus:border-accent text-ink text-sm rounded-none focus:outline-none"
+                    placeholder="Nama lengkap atau instansi"
+                  />
+                </div>
+                <div>
+                  <label for="contact-email" class="block font-mono text-xs text-ink mb-1">EMAIL ANDA</label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    required
+                    class="w-full px-3 py-2 bg-bg border border-line focus:border-accent text-ink text-sm rounded-none focus:outline-none"
+                    placeholder="email@instansi.com"
+                  />
+                </div>
+                <div>
+                  <label for="contact-message" class="block font-mono text-xs text-ink mb-1">PESAN / CATATAN REKAYASA</label>
+                  <textarea
+                    id="contact-message"
+                    rows="4"
+                    required
+                    class="w-full px-3 py-2 bg-bg border border-line focus:border-accent text-ink text-sm rounded-none focus:outline-none resize-none"
+                    placeholder="Tuliskan perihal atau topik diskusi Anda..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-2.5 px-4 bg-accent text-accent-ink font-mono text-xs font-semibold hover:bg-accent-hover transition cursor-pointer"
+                >
+                  Kirim Pesan &rarr;
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap 5 Toast Notification (10% Stack) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+      <div
+        id="emailToast"
+        class="toast bg-surface text-ink border border-accent shadow-lg"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header bg-surface-2 text-ink border-b border-line font-mono text-xs">
+          <span class="w-2 h-2 rounded-full bg-accent me-2"></span>
+          <strong class="me-auto text-accent">SISTEM NOTIFIKASI</strong>
+          <small class="text-ink-muted">Baru saja</small>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="toast"
+            aria-label="Tutup"
+          ></button>
+        </div>
+        <div class="toast-body font-mono text-xs">
+          Alamat email berhasil disalin ke clipboard!
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Plotter Minimalis -->
+    <footer class="border-t border-line py-8 bg-surface/50 font-mono text-xs">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-ink font-semibold">AGNA ARYAPUTRA RAHMAN</span>
+          <span class="text-ink-muted block text-[11px] mt-0.5">Pen Plotter &bull; Embedded Systems &bull; Web</span>
+        </div>
+        <div class="flex items-center gap-6 text-ink-muted">
+          <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition underline">
+            GitHub
+          </a>
+          <a href="/contact.html" class="hover:text-accent transition underline">
+            Email
+          </a>
+          <span class="text-ink-muted/50">&copy; <span id="current-year">2026</span></span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button
+      type="button"
+      id="btn-back-to-top"
+      aria-label="Kembali ke atas"
+      class="fixed bottom-6 right-6 w-9 h-9 border border-line bg-surface text-ink hover:border-accent hover:text-accent flex items-center justify-center font-mono text-xs opacity-0 pointer-events-none translate-y-4 transition-all z-40"
+    >
+      &uarr;
+    </button>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+# COLOR PALETTE — Cyber Orange & Obsidian Dark
+Berdasarkan referensi gambar (Portix & Echelon)
+
+Token Warna Utama (Hex):
+--------------------------------------------------
+--bg            : #0d0101  (Obsidian Deep Black - Latar halaman)
+--surface       : #161211  (Warm Dark Surface - Kartu, navbar, footer)
+--surface-2     : #241c1a  (Hover kartu, panel input form)
+--line / border : #342724  (Garis pembatas & outline halus)
+--ink           : #fffafa  (Snow White - Teks utama)
+--ink-muted     : #9e9492  (Warm Gray - Teks sekunder / deskripsi)
+--accent        : #ff5d00  (Electric Neon Orange - Tombol, badge, glow aksen)
+--accent-hover  : #ff7a29  (Bright Coral Orange - Hover aksen)
+--accent-ink    : #0d0101  (Teks di atas tombol oranye)
+--danger        : #f85149  (Warna error / validasi)
+--------------------------------------------------
+
+Tipografi:
+- Heading & Body : Plus Jakarta Sans (Weight: 400, 500, 600, 700, 800, 900)
+- Mono           : JetBrains Mono (Weight: 500, 600)
+
+File Penerapan:
+- src/styles/app.css
+- design.md
+- index.html, about.html, work.html, contact.html
