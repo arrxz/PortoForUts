@@ -8,7 +8,7 @@ export function createCardMesh(): {
   const group = new THREE.Group();
   const { front, back } = createCardTextures();
 
-  // Dimensi kartu: 1.6 x 2.25 x 0.02
+  // Dimensi kartu ID: 1.6 lebar x 2.25 tinggi x 0.02 tebal
   const cardWidth = 1.6;
   const cardHeight = 2.25;
   const cardDepth = 0.02;
@@ -32,7 +32,7 @@ export function createCardMesh(): {
     metalness: 0.05,
   });
 
-  // BoxGeometry face materials: right, left, top, bottom, front (+Z), back (-Z)
+  // BoxGeometry face order: right (+X), left (-X), top (+Y), bottom (-Y), front (+Z), back (-Z)
   const materials = [
     edgeMaterial,
     edgeMaterial,
@@ -47,17 +47,28 @@ export function createCardMesh(): {
   cardBody.receiveShadow = true;
   group.add(cardBody);
 
-  // Metal clip at top
-  const clipGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.25, 16);
+  // Metal clip holding the card to the strap at joint anchor (y ≈ 1.25 to 1.35)
+  const clipGroup = new THREE.Group();
+
+  // Horizontal clip bar
+  const clipBarGeo = new THREE.CylinderGeometry(0.045, 0.045, 0.32, 16);
   const clipMat = new THREE.MeshStandardMaterial({
-    color: 0xd9d9d9,
+    color: 0xc4c4c4,
     metalness: 0.9,
     roughness: 0.25,
   });
-  const clipMesh = new THREE.Mesh(clipGeo, clipMat);
-  clipMesh.rotation.z = Math.PI / 2;
-  clipMesh.position.set(0, cardHeight / 2 + 0.1, 0);
-  group.add(clipMesh);
+  const clipBar = new THREE.Mesh(clipBarGeo, clipMat);
+  clipBar.rotation.z = Math.PI / 2;
+  clipBar.position.set(0, 1.2, 0);
+  clipGroup.add(clipBar);
+
+  // Vertical swivel ring connecting to strap
+  const ringGeo = new THREE.TorusGeometry(0.09, 0.025, 12, 24);
+  const ringMesh = new THREE.Mesh(ringGeo, clipMat);
+  ringMesh.position.set(0, 1.32, 0);
+  clipGroup.add(ringMesh);
+
+  group.add(clipGroup);
 
   return { cardMesh: group, materials: [...materials, clipMat] };
 }

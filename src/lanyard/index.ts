@@ -8,11 +8,13 @@ export async function initLanyard(container: HTMLElement) {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 1024 || window.matchMedia('(pointer: coarse)').matches;
 
-  // WebGL support check
   let hasWebGL = false;
   try {
     const testCanvas = document.createElement('canvas');
-    hasWebGL = Boolean(window.WebGLRenderingContext && (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl')));
+    hasWebGL = Boolean(
+      window.WebGLRenderingContext &&
+        (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl'))
+    );
   } catch {
     hasWebGL = false;
   }
@@ -20,16 +22,15 @@ export async function initLanyard(container: HTMLElement) {
   const staticCard = document.getElementById('static-lanyard-card');
 
   if (isReduced || isMobile || !hasWebGL) {
-    // Keep static card visible and return without loading 3D
     if (staticCard) {
       staticCard.classList.remove('hidden');
     }
     return null;
   }
 
-  // 2. Setup Three.js Scene, Camera, Renderer
+  // 2. Setup Scene, Camera, Renderer
   const width = container.clientWidth || 450;
-  const height = container.clientHeight || 560;
+  const height = container.clientHeight || 580;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 100);
@@ -52,23 +53,23 @@ export async function initLanyard(container: HTMLElement) {
   canvasEl.setAttribute('aria-hidden', 'true');
   container.appendChild(canvasEl);
 
-  // 3. Lighting (Clean, no external files)
-  const ambientLight = new THREE.AmbientLight(0xfff6ea, 1.2);
+  // 3. Lighting Setup
+  const ambientLight = new THREE.AmbientLight(0xfff5ea, 1.3);
   scene.add(ambientLight);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
-  dirLight.position.set(5, 10, 8);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 2.2);
+  dirLight.position.set(6, 12, 8);
   dirLight.castShadow = true;
   dirLight.shadow.mapSize.width = 1024;
   dirLight.shadow.mapSize.height = 1024;
-  dirLight.shadow.bias = -0.0005;
+  dirLight.shadow.bias = -0.0004;
   scene.add(dirLight);
 
-  const fillLight = new THREE.DirectionalLight(0xe6d5b7, 0.8);
-  fillLight.position.set(-5, -2, 5);
+  const fillLight = new THREE.DirectionalLight(0xe6d5b7, 0.9);
+  fillLight.position.set(-6, -2, 6);
   scene.add(fillLight);
 
-  // 4. Create Card & Strap
+  // 4. Create Card & Strap Meshes
   const { cardMesh, materials } = createCardMesh();
   scene.add(cardMesh);
 
@@ -86,28 +87,17 @@ export async function initLanyard(container: HTMLElement) {
     return null;
   }
 
-  // Fade out static fallback once 3D canvas is ready
+  // Smoothly fade out static fallback once 3D canvas is ready
   if (staticCard) {
     staticCard.style.opacity = '0';
-    setTimeout(() => staticCard.classList.add('hidden'), 300);
+    setTimeout(() => staticCard.classList.add('hidden'), 350);
   }
 
-  // 6. Raycasting & Drag Interaction
+  // 6. Raycasting & Precision Drag Interaction
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
-  const planeZ = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-  const intersectPoint = new THREE.Vector3();
-
-  function getPointerWorldPos(e: PointerEvent): THREE.Vector3 | null {
-    const rect = canvasEl.getBoundingClientRect();
-    pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-    if (raycaster.ray.intersectPlane(planeZ, intersectPoint)) {
-      return intersectPoint;
-    }
-    return null;
-  }
+  const vec = new THREE.Vector3();
+  const dir = new THREE.Vector3();
 
   canvasEl.addEventListener('pointerdown', (e) => {
     const rect = canvasEl.getBoundingClientRect();
@@ -120,19 +110,24 @@ export async function initLanyard(container: HTMLElement) {
       canvasEl.setPointerCapture(e.pointerId);
       canvasEl.classList.remove('cursor-grab');
       canvasEl.classList.add('cursor-grabbing');
-      const worldPos = getPointerWorldPos(e);
-      if (worldPos) {
-        physics.startDrag(worldPos);
-      }
+
+      physics.startDrag(intersects[0].point);
     }
   });
 
   canvasEl.addEventListener('pointermove', (e) => {
     if (physics?.isDragging) {
-      const worldPos = getPointerWorldPos(e);
-      if (worldPos) {
-        physics.updateDrag(worldPos);
-      }
+      const rect = canvasEl.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      // Unproject pointer to 3D world space coordinates on z=0 plane
+      vec.set(pointer.x, pointer.y, 0.5).unproject(camera);
+      dir.copy(vec).sub(camera.position).normalize();
+      const dist = -camera.position.z / dir.z;
+      const worldPos = camera.position.clone().add(dir.multiplyScalar(dist));
+
+      physics.updateDrag(worldPos);
     }
   });
 
@@ -152,7 +147,7 @@ export async function initLanyard(container: HTMLElement) {
   canvasEl.addEventListener('pointerup', stopDrag);
   canvasEl.addEventListener('pointercancel', stopDrag);
 
-  // 7. Animation Loop with Visibility & Intersection Observer
+  // 7. Animation Loop
   let isVisible = true;
   let isTabActive = true;
   let animationFrameId = 0;
@@ -179,26 +174,27 @@ export async function initLanyard(container: HTMLElement) {
     const dt = (now - lastTime) / 1000;
     lastTime = now;
 
-    // Physics Step
+    // Step physics with fixed delta accumulator
     physics.step(dt);
 
     // Sync Three.js Card Position & Rotation
-    const cardTrans = physics.cardBody.translation();
-    const cardRot = physics.cardBody.rotation();
+    const cardTrans = physics.card.translation();
+    const cardRot = physics.card.rotation();
     cardMesh.position.set(cardTrans.x, cardTrans.y, cardTrans.z);
     cardMesh.quaternion.set(cardRot.x, cardRot.y, cardRot.z, cardRot.w);
 
-    // Sync Strap Curve Points
-    const anchorTrans = physics.anchorBody.translation();
-    const strapPoints = [
-      new THREE.Vector3(anchorTrans.x, anchorTrans.y, anchorTrans.z),
-      ...physics.segmentBodies.map((b) => {
-        const t = b.translation();
-        return new THREE.Vector3(t.x, t.y, t.z);
-      }),
-      new THREE.Vector3(cardTrans.x, cardTrans.y + 1.15, cardTrans.z),
-    ];
-    updateStrap(strapPoints);
+    // Sync Strap Curve Points (fixed -> j1 -> j2 -> j3)
+    const fT = physics.fixed.translation();
+    const j1T = physics.j1.translation();
+    const j2T = physics.j2.translation();
+    const j3T = physics.j3.translation();
+
+    updateStrap([
+      new THREE.Vector3(fT.x, fT.y, fT.z),
+      new THREE.Vector3(j1T.x, j1T.y, j1T.z),
+      new THREE.Vector3(j2T.x, j2T.y, j2T.z),
+      new THREE.Vector3(j3T.x, j3T.y, j3T.z),
+    ]);
 
     renderer.render(scene, camera);
   }
