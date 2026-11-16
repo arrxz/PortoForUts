@@ -1,308 +1,638 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" class="js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portofolio Teknik Agna Aryaputra Rahman - Eksplorasi Pen Plotter CNC, Sistem Tertanam, dan Rekayasa Web"
+      content="Portofolio Rekayasa Agna Aryaputra Rahman: Perangkat Keras Tertanam, Otomasi CNC, dan Sistem Web."
     />
     <meta name="author" content="Agna Aryaputra Rahman" />
-    <title>Agna Aryaputra Rahman | Portofolio Plotter</title>
+    <title>Agna Aryaputra Rahman | Portofolio Rekayasa</title>
 
-    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <!-- Google Fonts: Archivo, Instrument Serif, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Anti-FOUC Theme Script -->
-    <script>
-      (function () {
-        try {
-          const theme = localStorage.getItem('theme');
-          if (theme === 'light') {
-            document.documentElement.classList.add('light');
-            document.documentElement.setAttribute('data-theme', 'light');
-            document.documentElement.setAttribute('data-bs-theme', 'light');
-          } else {
-            document.documentElement.classList.remove('light');
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-          }
-        } catch (e) {
-          // fallback
-        }
-      })();
-    </script>
-
     <script type="module" src="/src/main.ts"></script>
   </head>
-  <body
-    class="bg-bg text-ink font-sans selection:bg-accent selection:text-accent-ink overflow-x-hidden min-h-screen flex flex-col justify-between"
-  >
-    <!-- Header & Navigasi -->
-    <header class="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-line py-3.5">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <!-- Brand / Koordinat -->
-        <a
-          href="/index.html"
-          class="font-mono text-sm tracking-tight text-ink font-semibold flex items-center gap-2 no-underline"
-        >
-          <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
-          <span>AGNA ARYAPUTRA</span>
-          <span class="text-ink-muted text-xs hidden sm:inline">[CNC.01]</span>
+  <body class="bg-paper text-ink selection:bg-orange selection:text-ink antialiased">
+    <!-- 1. Bar Mikro (Header Atas) -->
+    <header class="w-full border-b border-line bg-paper/90 backdrop-blur-sm sticky top-0 z-40 py-3.5 px-6 lg:px-12">
+      <div class="mx-auto flex max-w-[1440px] items-center justify-between text-xs font-mono font-medium">
+        <a href="#hero" class="text-ink font-bold tracking-tight hover:text-orange transition no-underline flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-orange inline-block"></span>
+          <span>AGNA ARYAPUTRA RAHMAN / PORTFOLIO</span>
         </a>
-
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-7">
-          <a
-            href="/index.html"
-            class="text-accent text-xs font-mono font-semibold tracking-wider transition uppercase"
-            >Home</a
-          >
-          <a
-            href="/work.html"
-            class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase"
-            >Work</a
-          >
-          <a
-            href="/about.html"
-            class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase"
-            >About</a
-          >
-          <a
-            href="/contact.html"
-            class="text-ink-muted hover:text-ink text-xs font-mono font-semibold tracking-wider transition uppercase"
-            >Contact</a
-          >
-        </nav>
-
-        <!-- Aksi Kanan & Switcher Tema -->
-        <div class="hidden md:flex items-center gap-3">
-          <button
-            type="button"
-            class="theme-toggle-btn inline-flex items-center justify-center w-8 h-8 rounded border border-line bg-surface hover:border-accent text-ink transition-colors cursor-pointer"
-            aria-label="Ganti tema"
-            title="Ganti tema"
-          >
-            <svg class="theme-icon-sun w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <svg class="theme-icon-moon w-3.5 h-3.5 text-accent hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-          </button>
-
-          <a
-            href="/contact.html"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-accent bg-accent text-accent-ink text-xs font-mono font-semibold hover:bg-accent-hover transition no-underline"
-          >
-            <span>Hubungi</span>
-          </a>
+        <div class="hidden sm:flex items-center gap-2 text-ink-soft tracking-[.14em] uppercase">
+          <span>EMBEDDED</span>
+          <span>&middot;</span>
+          <span>CNC AUTOMATION</span>
+          <span>&middot;</span>
+          <span>WEB</span>
         </div>
-
-        <!-- Mobile Toggler (Bootstrap 10%) -->
-        <button
-          class="md:hidden border border-line text-ink px-2.5 py-1 rounded text-xs font-mono font-medium hover:border-accent transition"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#mobileNav"
-          aria-controls="mobileNav"
-          aria-label="Buka menu navigasi"
-        >
-          MENU
-        </button>
       </div>
     </header>
 
-    <!-- Mobile Offcanvas Nav (Bootstrap 10%) -->
-    <div
-      class="offcanvas offcanvas-end bg-surface text-ink border-l border-line"
-      tabindex="-1"
-      id="mobileNav"
-      aria-labelledby="mobileNavLabel"
-    >
-      <div class="offcanvas-header border-b border-line p-4 flex items-center justify-between">
-        <h5 class="offcanvas-title font-mono text-xs font-bold text-ink tracking-wider" id="mobileNavLabel">
-          NAVIGASI [PLOTTER]
-        </h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Tutup"
-        ></button>
-      </div>
-      <div class="offcanvas-body p-6 flex flex-col gap-4 font-mono text-sm">
-        <a href="/index.html" class="text-accent py-2 border-b border-line">01. HOME</a>
-        <a href="/work.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">02. WORK</a>
-        <a href="/about.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">03. ABOUT</a>
-        <a href="/contact.html" class="text-ink-muted hover:text-ink py-2 border-b border-line">04. CONTACT</a>
-
-        <div class="mt-4 flex items-center justify-between pt-4 border-t border-line">
-          <span class="text-xs text-ink-muted">TEMA TAMPILAN</span>
-          <button
-            type="button"
-            class="theme-toggle-btn inline-flex items-center gap-2 px-3 py-1.5 rounded border border-line bg-surface hover:border-accent text-xs font-mono text-ink transition-colors cursor-pointer"
-          >
-            <span class="theme-label-text">Mode Terang</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Barba Wrapper -->
-    <main data-barba="wrapper" class="flex-grow">
-      <div data-barba="container" data-barba-namespace="home" class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20">
-        <!-- Hero: Single-stroke Plotter Drawing Canvas -->
-        <section class="mb-16">
-          <div class="plotter-grid-border p-6 sm:p-10 bg-surface/60 rounded-none mb-10">
-            <!-- Header Status Mesin Plotter -->
-            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-8 font-mono text-xs text-ink-muted">
-              <div class="flex items-center gap-3">
-                <span class="inline-flex items-center gap-1.5 text-accent font-semibold">
-                  <span class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></span>
-                  MESIN: SIAP
-                </span>
-                <span>|</span>
-                <span>BAUD: 115200</span>
-                <span>|</span>
-                <span>FIRMWARE: GRBL v1.1</span>
-              </div>
-              <div class="text-ink-muted">KOORDINAT: X:0.00 Y:0.00 Z:UP</div>
+    <main id="main-content">
+      <!-- 2. Hero Section -->
+      <section id="hero" class="relative mx-auto w-full max-w-[1440px] px-6 lg:px-12 pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div class="grid grid-cols-12 gap-8 items-center">
+          <!-- Kolom Kiri: Tipografi Editorial Raksasa -->
+          <div class="col-span-12 lg:col-span-7 z-10">
+            <!-- Label Kategori Mono -->
+            <div class="hero-fade-item mb-6">
+              <span class="font-mono text-xs uppercase tracking-[.14em] text-ink-soft border-b border-line pb-1">
+                REKAYASA PERANGKAT KERAS &amp; SISTEM WEB
+              </span>
             </div>
 
-            <!-- Single-stroke Title Vector -->
-            <div class="hero-stroke mb-8">
-              <h1 class="sr-only">Agna Aryaputra Rahman - Turning ideas into real working systems</h1>
-              <svg
-                class="w-full h-auto max-h-36 sm:max-h-48 text-ink"
-                viewBox="0 0 900 160"
-                role="img"
-                aria-label="Agna Aryaputra Rahman - Single-Stroke Hershey Vector"
+            <!-- Headline H1 Archivo 900 Raksasa -->
+            <h1 class="font-black leading-[.88] tracking-[-.045em] text-[clamp(3rem,8vw,7.5rem)] uppercase text-ink mb-8">
+              <span class="block overflow-hidden">
+                <span class="hero-line-inner block">REKAYASA</span>
+              </span>
+              <span class="block overflow-hidden">
+                <span class="hero-line-inner block text-orange">FISIK &amp; KODE</span>
+              </span>
+              <span class="block overflow-hidden">
+                <span class="hero-line-inner block">YANG PRESISI.</span>
+              </span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-fade-item text-ink-soft text-lg sm:text-xl max-w-xl leading-relaxed mb-10 font-normal">
+              Merancang perangkat keras mikrokontroler, kendali motor CNC, dan arsitektur aplikasi web modern tanpa dependensi yang berlebihan.
+            </p>
+
+            <!-- Aksi Utama & Sekunder -->
+            <div class="hero-fade-item flex flex-wrap items-center gap-4">
+              <a
+                href="#proyek"
+                class="inline-flex items-center gap-2 bg-orange px-8 py-4 font-extrabold text-sm uppercase tracking-wider text-ink transition hover:bg-ink hover:text-on-ink no-underline"
               >
-                <!-- Single-stroke Vector Lines (Hershey Font Path Representation) -->
-                <path
-                  class="single-stroke-path"
-                  stroke-width="2.5"
-                  d="M 40,130 L 75,30 L 110,130 M 52,98 L 98,98 
-                     M 160,50 C 130,50 120,70 120,85 C 120,110 140,130 170,130 C 195,130 205,115 205,95 L 165,95 
-                     M 225,130 L 225,30 L 275,130 L 275,30 
-                     M 295,130 L 330,30 L 365,130 M 307,98 L 353,98
-                     M 420,130 L 455,30 L 490,130 M 432,98 L 478,98
-                     M 515,130 L 515,30 C 535,30 555,30 555,60 C 555,85 535,88 515,88 M 535,88 L 560,130
-                     M 580,30 L 605,85 L 630,30 M 605,85 L 605,130
-                     M 650,130 L 685,30 L 720,130 M 662,98 L 708,98
-                     M 740,130 L 740,30 C 765,30 785,35 785,60 C 785,85 765,88 740,88
-                     M 805,30 L 805,100 C 805,120 820,130 840,130 C 860,130 875,120 875,100 L 875,30"
-                />
-              </svg>
+                <span>Lihat Proyek</span>
+                <span>&rarr;</span>
+              </a>
+              <a
+                href="#kontak"
+                class="inline-flex items-center gap-2 border-2 border-ink px-8 py-3.5 font-bold text-sm uppercase tracking-wider text-ink transition hover:bg-ink hover:text-on-ink no-underline"
+              >
+                <span>Kontak Langsung</span>
+              </a>
             </div>
+          </div>
 
-            <!-- Bio Singkat & Tagline Resmi -->
-            <div class="grid md:grid-cols-12 gap-8 items-start pt-6 border-t border-line">
-              <div class="md:col-span-8">
-                <p class="text-base sm:text-lg text-ink font-semibold leading-relaxed mb-3">
-                  Turning ideas into real working systems.
-                </p>
-                <p class="text-sm text-ink-muted leading-relaxed">
-                  Halaman ini dirancang layaknya kertas di atas meja kerja pen plotter: garis presisi, pergerakan pena tunggal, dan dokumentasi jujur dari rekayasa perangkat keras nyata. Tanpa animasi berlebihan, tanpa foto stok.
+          <!-- Kolom Kanan: Lanyard 3D Berfisika (Three.js + Rapier) & Fallback -->
+          <div class="col-span-12 lg:col-span-5 relative min-h-[460px] lg:min-h-[580px] flex items-center justify-center">
+            <!-- 3D Lanyard Canvas Container (Desktop Only via dynamic import) -->
+            <div id="lanyard-canvas-container" class="absolute inset-0 w-full h-full pointer-events-auto"></div>
+
+            <!-- Fallback Kartu Statis (HTML/CSS) untuk Mobile / Reduced-Motion / No-JS -->
+            <div
+              id="static-lanyard-card"
+              class="relative w-72 sm:w-80 border-2 border-ink bg-paper p-6 shadow-2xl transition-opacity duration-300 pointer-events-auto"
+            >
+              <!-- Strap Mockup -->
+              <div class="w-10 h-16 bg-orange border-x-2 border-t-2 border-ink absolute -top-16 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                <div class="w-4 h-4 rounded-full bg-ink"></div>
+              </div>
+
+              <!-- Header Kartu -->
+              <div class="bg-orange -mx-6 -mt-6 p-4 border-b-2 border-ink mb-6 flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-ink uppercase tracking-wider">ID CARD // 2026</span>
+                <span class="w-2 h-2 rounded-full bg-ink"></span>
+              </div>
+
+              <div class="space-y-4">
+                <div class="photo-sand w-28 h-32 border border-ink mx-auto">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80"
+                    alt="Foto Profil Agna Aryaputra Rahman"
+                    width="112"
+                    height="128"
+                  />
+                </div>
+                <div class="text-center">
+                  <h2 class="font-extrabold text-xl text-ink tracking-tight uppercase">AGNA ARYAPUTRA</h2>
+                  <p class="font-mono text-xs text-ink-soft uppercase tracking-wider mt-1">EMBEDDED &amp; WEB</p>
+                </div>
+                <div class="border-t border-line pt-3 text-center">
+                  <span class="font-mono text-[11px] text-ink-soft block">NO. 2026.01.AAR</span>
+                  <span class="font-mono text-[10px] text-orange-deep font-bold mt-1 block">HARDWARE &amp; WEB LAB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Bagian Proyek Pilihan (Grid Editorial 12 Kolom) -->
+      <section id="proyek" class="border-t-2 border-ink bg-paper py-24 lg:py-32">
+        <div class="mx-auto w-full max-w-[1440px] px-6 lg:px-12">
+          <!-- Header Bagian -->
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6 pb-6 border-b border-line">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-[.14em] text-ink-soft block mb-2">01 // PROYEK REKAYASA</span>
+              <h2 class="text-4xl sm:text-5xl font-black text-ink uppercase tracking-tight">KARYA UNGGULAN</h2>
+            </div>
+            <p class="text-ink-soft font-mono text-xs max-w-xs">
+              Klik setiap tile proyek untuk meninjau studi kasus teknis dan arsitektur perangkat.
+            </p>
+          </div>
+
+          <!-- Grid Proyek -->
+          <div class="grid grid-cols-12 gap-6">
+            <!-- Tile 01 (Kolom 7 Desktop) -->
+            <article class="project-tile col-span-12 lg:col-span-7 border-2 border-ink bg-paper p-6 sm:p-8 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between border-b border-line pb-4 mb-6">
+                  <span class="font-mono text-sm font-bold text-orange">01</span>
+                  <span class="font-mono text-xs uppercase tracking-wider text-ink-soft">HARDWARE &bull; CNC &bull; FIRMWARE</span>
+                </div>
+                <div class="photo-sand w-full aspect-[16/10] border border-ink mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&auto=format&fit=crop&q=80"
+                    alt="Pen Plotter CNC 2-Axis Dokumentasi"
+                    width="700"
+                    height="438"
+                  />
+                </div>
+                <h3 class="font-black text-2xl sm:text-3xl text-ink uppercase tracking-tight mb-3 group-hover:text-orange transition">
+                  Pen Plotter CNC 2-Axis (Arduino + GRBL)
+                </h3>
+                <p class="text-ink-soft text-sm leading-relaxed mb-6">
+                  Rancang bangun mesin plotter 2 sumbu berbasis Arduino Uno, CNC Shield V3, dan motor stepper NEMA 17. Menyelesaikan masalah pemetaan pulsa PWM servo untuk mekanisme pena naik-turun.
                 </p>
               </div>
-              <div class="md:col-span-4 flex flex-col gap-3 font-mono text-xs">
-                <div class="p-3 bg-bg border border-line">
-                  <span class="text-accent block font-semibold mb-1">PROYEK UTAMA:</span>
-                  <a href="/work.html" class="text-ink hover:text-accent underline font-medium">
-                    Pen Plotter CNC (Arduino + GRBL) &rarr;
+              <div class="pt-4 border-t border-line flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2 font-mono text-xs text-ink-soft">
+                  <span class="px-2 py-0.5 bg-sand/60 border border-ink/20">ARDUINO UNO</span>
+                  <span class="px-2 py-0.5 bg-sand/60 border border-ink/20">GRBL v1.1</span>
+                  <span class="px-2 py-0.5 bg-sand/60 border border-ink/20">SERVO SG90</span>
+                </div>
+                <button
+                  type="button"
+                  data-project-slug="pen-plotter-cnc"
+                  class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink hover:text-orange transition"
+                >
+                  <span>Buka Modal Studi Kasus</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Tile 02 (Kolom 5 Desktop) -->
+            <article class="project-tile col-span-12 lg:col-span-5 border-2 border-ink bg-paper p-6 sm:p-8 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between border-b border-line pb-4 mb-6">
+                  <span class="font-mono text-sm font-bold text-orange">02</span>
+                  <span class="font-mono text-xs uppercase tracking-wider text-ink-soft">IOT &bull; TELEMETRI &bull; C++</span>
+                </div>
+                <div class="photo-sand w-full aspect-[16/10] border border-ink mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=900&auto=format&fit=crop&q=80"
+                    alt="Stasiun Telemetri Cuaca"
+                    width="500"
+                    height="312"
+                  />
+                </div>
+                <h3 class="font-black text-2xl text-ink uppercase tracking-tight mb-3 group-hover:text-orange transition">
+                  Stasiun Telemetri Cuaca Hemat Daya
+                </h3>
+                <p class="text-ink-soft text-sm leading-relaxed mb-6">
+                  Node telemetri lingkungan nirkabel berbasis ESP32 dan sensor BME280 dengan protokol MQTT dan optimasi deep-sleep 15uA.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-line flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2 font-mono text-xs text-ink-soft">
+                  <span class="px-2 py-0.5 bg-sand/60 border border-ink/20">ESP32</span>
+                  <span class="px-2 py-0.5 bg-sand/60 border border-ink/20">MQTT</span>
+                </div>
+                <button
+                  type="button"
+                  data-project-slug="smart-weather-telemetry"
+                  class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink hover:text-orange transition"
+                >
+                  <span>Detail Studi Kasus</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Tile 03 (Kolom 12: Blok Oranye Penuh untuk Ritme Editorial) -->
+            <article class="project-tile col-span-12 border-2 border-ink bg-orange p-8 sm:p-12 text-ink flex flex-col md:flex-row md:items-center justify-between gap-8">
+              <div class="max-w-2xl">
+                <div class="flex items-center gap-4 mb-4">
+                  <span class="font-mono text-sm font-bold text-ink">03</span>
+                  <span class="font-mono text-xs uppercase tracking-wider text-ink/80">WEB ARCHITECTURE &bull; REAL-TIME</span>
+                </div>
+                <h3 class="font-black text-3xl sm:text-4xl text-ink uppercase tracking-tight mb-3">
+                  Dashboard Telemetri Web Real-Time
+                </h3>
+                <p class="text-ink text-sm sm:text-base leading-relaxed font-medium">
+                  Antarmuka pemantauan data sensor berfrekuensi tinggi dengan Tailwind CSS v4, koneksi WebSocket, dan visualisasi canvas 60 FPS tanpa jeda frame.
+                </p>
+              </div>
+              <div class="flex flex-col sm:flex-row md:flex-col gap-4">
+                <button
+                  type="button"
+                  data-project-slug="industrial-iot-dashboard"
+                  class="inline-flex items-center justify-center gap-2 bg-ink text-on-ink px-8 py-4 font-bold text-xs uppercase tracking-wider hover:bg-paper hover:text-ink transition"
+                >
+                  <span>Lihat Arsitektur Web</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Pita Kata Raksasa (P R O J E C T S Parallax Scrub) -->
+      <section class="editorial-band bg-ink text-on-ink py-16 sm:py-24 overflow-hidden border-y-2 border-ink select-none">
+        <div class="flex items-center justify-between px-6 lg:px-12 mb-4">
+          <span class="font-mono text-xs uppercase tracking-[.2em] text-on-ink/60">ARSITEKTUR &bull; 2026</span>
+          <a
+            href="#tentang"
+            class="grid size-12 place-items-center rounded-full border-2 border-on-ink text-on-ink hover:bg-orange hover:text-ink hover:border-orange transition no-underline text-lg font-bold"
+            aria-label="Gulir ke bagian Tentang"
+          >
+            &darr;
+          </a>
+        </div>
+        <div class="editorial-band-text whitespace-nowrap font-black uppercase text-[clamp(4.5rem,18vw,16rem)] leading-none tracking-tighter text-on-ink opacity-95">
+          P R O J E C T S &bull; E N G I N E E R I N G &bull; P R O J E C T S
+        </div>
+      </section>
+
+      <!-- 5. Bagian Tentang (Background Sand Editorial) -->
+      <section id="tentang" class="bg-sand border-b-2 border-ink py-24 lg:py-32">
+        <div class="mx-auto w-full max-w-[1440px] px-6 lg:px-12">
+          <div class="grid grid-cols-12 gap-8 items-start">
+            <!-- Foto Kecil Profil -->
+            <div class="col-span-12 md:col-span-4 lg:col-span-3">
+              <div class="photo-sand w-full aspect-[4/5] border-2 border-ink">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
+                  alt="Potret Agna Aryaputra Rahman"
+                  width="300"
+                  height="375"
+                />
+              </div>
+              <div class="mt-4 font-mono text-xs text-ink-soft">
+                <span class="block font-bold text-ink">AGNA ARYAPUTRA RAHMAN</span>
+                <span>Informatika &bull; Semester 3</span>
+              </div>
+            </div>
+
+            <!-- Pernyataan Filosofi Serif Besar & Data Teknis -->
+            <div class="col-span-12 md:col-span-8 lg:col-span-9 space-y-8">
+              <div>
+                <span class="font-mono text-xs uppercase tracking-[.14em] text-ink-soft block mb-4">02 // TENTANG SAYA</span>
+                <blockquote class="font-serif italic text-3xl sm:text-4xl lg:text-5xl text-ink leading-tight mb-8">
+                  &ldquo;Saya meyakini bahwa rekayasa terbaik lahir saat konsep perangkat lunak bertemu langsung dengan presisi mekanik dan fisika perangkat keras.&rdquo;
+                </blockquote>
+                <div class="space-y-4 text-ink text-base sm:text-lg leading-relaxed max-w-3xl">
+                  <p>
+                    Saya adalah mahasiswa Teknik Informatika yang mendalami integrasi mikrokontroler fisik dan aplikasi web performa tinggi. Mulai dari merakit rangka mekanik plotter CNC, kalibrasi driver motor stepper, hingga modifikasi firmware C/C++ pada microcontroller.
+                  </p>
+                  <p>
+                    Prinsip saya sederhana: utamakan fungsionalitas riil, kode yang bersih, dan hasil terukur daripada sekadar klaim teoritis.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Kolom Data Mono dengan Garis Vertikal Tipis -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-ink/20 font-mono text-xs">
+                <div class="border-l-2 border-ink pl-4">
+                  <span class="text-ink-soft block text-[10px] uppercase mb-1">PENDIDIKAN</span>
+                  <span class="text-ink font-bold">Teknik Informatika</span>
+                  <span class="text-ink-soft block text-[11px]">Semester 3</span>
+                </div>
+                <div class="border-l-2 border-ink pl-4">
+                  <span class="text-ink-soft block text-[10px] uppercase mb-1">FOKUS RISET</span>
+                  <span class="text-ink font-bold">Embedded Hardware</span>
+                  <span class="text-ink-soft block text-[11px]">CNC &amp; Web Automation</span>
+                </div>
+                <div class="border-l-2 border-ink pl-4">
+                  <span class="text-ink-soft block text-[10px] uppercase mb-1">KODE TERBUKA</span>
+                  <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="text-orange-deep font-bold underline">
+                    github.com/arrxz &rarr;
                   </a>
                 </div>
-                <a
-                  href="/contact.html"
-                  class="inline-flex items-center justify-center px-4 py-2 bg-surface hover:bg-surface-2 border border-line hover:border-accent text-ink transition text-center font-medium"
-                >
-                  Kontak Rekayasa &rarr;
-                </a>
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- Garis Ruler Scroll -->
-        <div class="w-full h-px bg-line my-12 relative">
-          <svg class="w-full h-2 absolute -top-1 left-0 overflow-visible text-accent" preserveAspectRatio="none">
-            <line class="scroll-ruler-line" x1="0" y1="4" x2="100%" y2="4" stroke="currentColor" stroke-width="1.5" />
-          </svg>
         </div>
+      </section>
 
-        <!-- Proyek Sorotan Singkat -->
-        <section class="mb-16">
-          <div class="flex items-center justify-between mb-6 pb-2 border-b border-line font-mono text-xs">
-            <span class="text-accent font-semibold tracking-wider uppercase">01 // REKAYASA MESIN</span>
-            <a href="/work.html" class="text-ink-muted hover:text-accent underline">Lihat Detail Kasus &rarr;</a>
+      <!-- 6. Bagian Skill (Daftar Mono per Kelompok, Tanpa Persentase Palsu) -->
+      <section id="skill" class="bg-paper border-b-2 border-ink py-24 lg:py-32">
+        <div class="mx-auto w-full max-w-[1440px] px-6 lg:px-12">
+          <div class="mb-14 pb-6 border-b border-line flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-[.14em] text-ink-soft block mb-2">03 // KEAHLIAN REKAYASA</span>
+              <h2 class="text-4xl sm:text-5xl font-black text-ink uppercase tracking-tight">KOMPETENSI TEKNIS</h2>
+            </div>
+            <p class="font-mono text-xs text-ink-soft max-w-xs">
+              Daftar alat dan teknologi riil yang telah diaplikasikan dalam prototipe.
+            </p>
           </div>
 
-          <div class="plotter-card p-6 sm:p-8">
-            <div class="grid md:grid-cols-12 gap-6 items-center">
-              <div class="md:col-span-8">
-                <span class="font-mono text-xs text-accent font-semibold block mb-1">HARDWARE &bull; CNC &bull; FIRMWARE</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-ink mb-3 tracking-tight">
-                  Pen Plotter CNC Buatan Sendiri (GRBL + Arduino Uno)
-                </h2>
-                <p class="text-sm text-ink-muted leading-relaxed mb-4">
-                  Mesin pen plotter 2 sumbu (X/Y) dengan kendali pena servo (Z-axis). Mengatasi masalah pemetaan pin servo pada GRBL, timing pulsa PWM, dan konversi vektor tipografi single-stroke Hershey ke G-code.
-                </p>
-                <div class="flex flex-wrap gap-2 font-mono text-xs">
-                  <span class="px-2 py-0.5 bg-surface-2 border border-line text-ink-muted">Arduino Uno</span>
-                  <span class="px-2 py-0.5 bg-surface-2 border border-line text-ink-muted">CNC Shield V3</span>
-                  <span class="px-2 py-0.5 bg-surface-2 border border-line text-ink-muted">GRBL v1.1</span>
-                  <span class="px-2 py-0.5 bg-surface-2 border border-line text-ink-muted">NEMA 17</span>
-                  <span class="px-2 py-0.5 bg-surface-2 border border-line text-ink-muted">Servo SG90</span>
-                </div>
-              </div>
-              <div class="md:col-span-4 flex flex-col gap-3">
-                <a
-                  href="/work.html"
-                  class="w-full text-center py-2.5 px-4 bg-accent text-accent-ink font-mono text-xs font-semibold rounded hover:bg-accent-hover transition"
-                >
-                  Buka Studi Kasus &rarr;
-                </a>
+          <!-- Grid Kelompok Skill -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="border border-line bg-paper p-6">
+              <h3 class="font-mono text-xs font-bold text-orange uppercase tracking-wider mb-4 border-b border-line pb-2">
+                EMBEDDED &amp; SENSOR
+              </h3>
+              <ul class="space-y-2 font-mono text-xs text-ink">
+                <li class="flex items-center gap-2">&bull; Arduino Uno (ATmega328P)</li>
+                <li class="flex items-center gap-2">&bull; ESP32 Dual Core Wi-Fi/BLE</li>
+                <li class="flex items-center gap-2">&bull; Sensor Lingkungan BME280</li>
+                <li class="flex items-center gap-2">&bull; Protokol I2C, SPI, UART</li>
+              </ul>
+            </div>
+
+            <div class="border border-line bg-paper p-6">
+              <h3 class="font-mono text-xs font-bold text-orange uppercase tracking-wider mb-4 border-b border-line pb-2">
+                KONTROL &amp; MEKANIK
+              </h3>
+              <ul class="space-y-2 font-mono text-xs text-ink">
+                <li class="flex items-center gap-2">&bull; Stepper Motor NEMA 17</li>
+                <li class="flex items-center gap-2">&bull; Driver A4988 Microstepping</li>
+                <li class="flex items-center gap-2">&bull; Micro Servo TowerPro SG90</li>
+                <li class="flex items-center gap-2">&bull; Transmisi GT2 Timing Belt</li>
+              </ul>
+            </div>
+
+            <div class="border border-line bg-paper p-6">
+              <h3 class="font-mono text-xs font-bold text-orange uppercase tracking-wider mb-4 border-b border-line pb-2">
+                FIRMWARE &amp; BAHASA
+              </h3>
+              <ul class="space-y-2 font-mono text-xs text-ink">
+                <li class="flex items-center gap-2">&bull; Bahasa Pemrograman C / C++</li>
+                <li class="flex items-center gap-2">&bull; Python (Data &amp; Serial)</li>
+                <li class="flex items-center gap-2">&bull; TypeScript / JavaScript</li>
+                <li class="flex items-center gap-2">&bull; Arsitektur FreeRTOS</li>
+              </ul>
+            </div>
+
+            <div class="border border-line bg-paper p-6">
+              <h3 class="font-mono text-xs font-bold text-orange uppercase tracking-wider mb-4 border-b border-line pb-2">
+                OTOMASI &amp; CNC
+              </h3>
+              <ul class="space-y-2 font-mono text-xs text-ink">
+                <li class="flex items-center gap-2">&bull; Firmware GRBL v1.1 Custom</li>
+                <li class="flex items-center gap-2">&bull; G-code Command Streaming</li>
+                <li class="flex items-center gap-2">&bull; Inkscape Hershey Single-Stroke</li>
+                <li class="flex items-center gap-2">&bull; Kalibrasi Step per Milimeter</li>
+              </ul>
+            </div>
+
+            <div class="border border-line bg-paper p-6 lg:col-span-2">
+              <h3 class="font-mono text-xs font-bold text-orange uppercase tracking-wider mb-4 border-b border-line pb-2">
+                REKAYASA WEB &amp; INTEGRASI
+              </h3>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <ul class="space-y-2 font-mono text-xs text-ink">
+                  <li class="flex items-center gap-2">&bull; HTML5 Semantik &amp; Aksesibilitas WCAG AA</li>
+                  <li class="flex items-center gap-2">&bull; Tailwind CSS v4 &amp; Token Sistem Desain</li>
+                </ul>
+                <ul class="space-y-2 font-mono text-xs text-ink">
+                  <li class="flex items-center gap-2">&bull; Vite Multi-page &amp; Bundling ES2020</li>
+                  <li class="flex items-center gap-2">&bull; GSAP &amp; Lenis Inertial Scroll Sync</li>
+                </ul>
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <!-- 7. Bagian Kontak (Pita Oranye Penuh, Teks Ink) -->
+      <section id="kontak" class="bg-orange text-ink py-24 lg:py-32 border-b-2 border-ink">
+        <div class="mx-auto w-full max-w-[1440px] px-6 lg:px-12">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <div class="col-span-12 lg:col-span-8 space-y-6">
+              <span class="font-mono text-xs uppercase tracking-[.14em] text-ink font-bold block">04 // HUBUNGI SAYA</span>
+              <h2 class="font-black text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-ink leading-none">
+                MARI MEMBANGUN SISTEM NYATA.
+              </h2>
+              <p class="text-ink text-base sm:text-lg max-w-xl font-medium leading-relaxed">
+                Terbuka untuk diskusi teknis seputar sistem mikrokontroler, kalibrasi plotter CNC, atau proyek web frontend berperforma tinggi.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 pt-4">
+                <!-- Tombol Salin Email Interaktif -->
+                <button
+                  type="button"
+                  id="btn-copy-email"
+                  data-email="arrxz.dev@gmail.com"
+                  class="inline-flex items-center gap-3 bg-ink text-on-ink px-8 py-4 font-mono text-xs font-bold uppercase tracking-wider hover:bg-paper hover:text-ink transition"
+                >
+                  <span>arrxz.dev@gmail.com</span>
+                  <span class="text-orange">(Klik Salin)</span>
+                </button>
+                <a
+                  href="mailto:arrxz.dev@gmail.com"
+                  class="inline-flex items-center gap-2 border-2 border-ink px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-on-ink transition no-underline"
+                >
+                  <span>Kirim Email Langsung</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Tautan Media Sosial -->
+            <div class="col-span-12 lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 font-mono text-sm font-bold">
+              <a
+                href="https://github.com/arrxz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-5 border-2 border-ink bg-paper text-ink hover:bg-ink hover:text-on-ink transition no-underline"
+              >
+                <span>GITHUB / ARRAXZ</span>
+                <span>&nearr;</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/arrxz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-5 border-2 border-ink bg-paper text-ink hover:bg-ink hover:text-on-ink transition no-underline"
+              >
+                <span>LINKEDIN PROFIL</span>
+                <span>&nearr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer Plotter Minimalis -->
-    <footer class="border-t border-line py-8 bg-surface/50 font-mono text-xs">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- 8. Footer Editorial Tipis -->
+    <footer class="w-full bg-paper py-8 px-6 lg:px-12 border-t border-line font-mono text-xs text-ink-soft">
+      <div class="mx-auto flex max-w-[1440px] flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <span class="text-ink font-semibold">AGNA ARYAPUTRA RAHMAN</span>
-          <span class="text-ink-muted block text-[11px] mt-0.5">Pen Plotter &bull; Embedded Systems &bull; Web</span>
+          <span class="text-ink font-bold">AGNA ARYAPUTRA RAHMAN</span>
+          <span class="block text-[11px] mt-0.5">Paper, Ink &amp; Orange Editorial Edition</span>
         </div>
-        <div class="flex items-center gap-6 text-ink-muted">
-          <a href="https://github.com/arrxz" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition underline">
-            GitHub
-          </a>
-          <a href="/contact.html" class="hover:text-accent transition underline">
-            Email
-          </a>
-          <span class="text-ink-muted/50">&copy; <span id="current-year">2026</span></span>
+        <div class="flex items-center gap-6">
+          <a href="#hero" class="text-ink hover:text-orange transition underline">Kembali ke Atas &uarr;</a>
+          <span>&copy; <span id="current-year">2026</span> Agna Aryaputra Rahman</span>
         </div>
       </div>
     </footer>
 
-    <!-- Back to top button -->
-    <button
-      type="button"
-      id="btn-back-to-top"
-      aria-label="Kembali ke atas"
-      class="fixed bottom-6 right-6 w-9 h-9 border border-line bg-surface text-ink hover:border-accent hover:text-accent flex items-center justify-center font-mono text-xs opacity-0 pointer-events-none translate-y-4 transition-all z-40"
+    <!-- 9. Radial Navbar (Fixed Pojok Kanan Bawah, Section 8) -->
+    <div id="radial-nav" class="fixed right-6 bottom-6 z-50">
+      <!-- Item Melingkar (Busur 180° s.d. 270°) -->
+      <nav aria-label="Navigasi radial utama" id="radial-nav-list" class="pointer-events-none relative">
+        <ul class="list-none p-0 m-0">
+          <li class="radial-item absolute right-0 bottom-0 size-14 rounded-full bg-ink text-on-ink border-2 border-paper flex items-center justify-center font-mono text-xs opacity-0 scale-50 transition-colors shadow-xl">
+            <a href="#hero" class="w-full h-full flex flex-col items-center justify-center text-inherit no-underline" title="Beranda" aria-label="Beranda">
+              <span class="font-bold text-[11px]">01</span>
+              <span class="text-[9px] uppercase tracking-tighter">HOME</span>
+            </a>
+          </li>
+          <li class="radial-item absolute right-0 bottom-0 size-14 rounded-full bg-ink text-on-ink border-2 border-paper flex items-center justify-center font-mono text-xs opacity-0 scale-50 transition-colors shadow-xl">
+            <a href="#proyek" class="w-full h-full flex flex-col items-center justify-center text-inherit no-underline" title="Proyek" aria-label="Proyek">
+              <span class="font-bold text-[11px]">02</span>
+              <span class="text-[9px] uppercase tracking-tighter">WORK</span>
+            </a>
+          </li>
+          <li class="radial-item absolute right-0 bottom-0 size-14 rounded-full bg-ink text-on-ink border-2 border-paper flex items-center justify-center font-mono text-xs opacity-0 scale-50 transition-colors shadow-xl">
+            <a href="#tentang" class="w-full h-full flex flex-col items-center justify-center text-inherit no-underline" title="Tentang" aria-label="Tentang">
+              <span class="font-bold text-[11px]">03</span>
+              <span class="text-[9px] uppercase tracking-tighter">ABOUT</span>
+            </a>
+          </li>
+          <li class="radial-item absolute right-0 bottom-0 size-14 rounded-full bg-ink text-on-ink border-2 border-paper flex items-center justify-center font-mono text-xs opacity-0 scale-50 transition-colors shadow-xl">
+            <a href="#skill" class="w-full h-full flex flex-col items-center justify-center text-inherit no-underline" title="Keahlian" aria-label="Keahlian">
+              <span class="font-bold text-[11px]">04</span>
+              <span class="text-[9px] uppercase tracking-tighter">SKILL</span>
+            </a>
+          </li>
+          <li class="radial-item absolute right-0 bottom-0 size-14 rounded-full bg-ink text-on-ink border-2 border-paper flex items-center justify-center font-mono text-xs opacity-0 scale-50 transition-colors shadow-xl">
+            <a href="#kontak" class="w-full h-full flex flex-col items-center justify-center text-inherit no-underline" title="Kontak" aria-label="Kontak">
+              <span class="font-bold text-[11px]">05</span>
+              <span class="text-[9px] uppercase tracking-tighter">CHAT</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Tombol Pemicu Radial 64px Oranye -->
+      <button
+        type="button"
+        id="radial-nav-trigger"
+        aria-label="Buka menu navigasi radial"
+        aria-expanded="false"
+        aria-controls="radial-nav-list"
+        class="size-16 rounded-full bg-orange text-ink border-2 border-ink flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-transform cursor-pointer relative z-10"
+      >
+        <span class="trigger-icon font-mono font-bold text-xl leading-none select-none block">+</span>
+      </button>
+    </div>
+
+    <!-- 10. Bootstrap 5.3 Modal Detail Proyek (10% Stack) -->
+    <div
+      class="modal fade"
+      id="projectDetailModal"
+      tabindex="-1"
+      aria-labelledby="modalProjectTitle"
+      aria-hidden="true"
     >
-      &uarr;
-    </button>
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-2 border-ink bg-paper text-ink rounded-none shadow-2xl">
+          <div class="modal-header border-b-2 border-ink p-6 flex items-center justify-between bg-sand/30">
+            <div>
+              <span id="modalProjectIndex" class="font-mono text-xs font-bold text-orange block mb-1">01</span>
+              <h3 class="modal-title font-black text-xl sm:text-2xl text-ink uppercase" id="modalProjectTitle">
+                Judul Proyek
+              </h3>
+              <p id="modalProjectRole" class="font-mono text-xs text-ink-soft uppercase tracking-wider mt-1">
+                Peran Pengembang
+              </p>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Tutup modal"
+            ></button>
+          </div>
+          <div class="modal-body p-6 sm:p-8 space-y-6 text-sm">
+            <div>
+              <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-orange mb-2">MASALAH YANG DISELESAIKAN</h4>
+              <p id="modalProjectProblem" class="text-ink leading-relaxed bg-paper border border-line p-4">
+                Deskripsi masalah.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-orange mb-2">PENDEKATAN &amp; SOLUSI</h4>
+              <p id="modalProjectSolution" class="text-ink leading-relaxed bg-paper border border-line p-4">
+                Deskripsi solusi rekayasa.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-orange mb-2">KOMPONEN &amp; TEKNOLOGI</h4>
+              <div id="modalProjectStack" class="flex flex-wrap gap-2 pt-1">
+                <!-- Stack badges inserted dynamically -->
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-orange mb-2">HASIL TERUKUR</h4>
+              <p id="modalProjectResult" class="text-ink leading-relaxed bg-paper border border-line p-4 font-mono text-xs">
+                Hasil pengujian terukur.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer border-t-2 border-ink p-4 flex items-center justify-between bg-sand/30">
+            <div id="modalProjectLinks" class="flex flex-wrap gap-3">
+              <!-- Action links inserted dynamically -->
+            </div>
+            <button
+              type="button"
+              class="px-5 py-2.5 border-2 border-ink font-mono text-xs font-bold uppercase hover:bg-ink hover:text-on-ink transition"
+              data-bs-dismiss="modal"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Bootstrap Toast Notifikasi Salin Email -->
+    <div class="toast-container position-fixed bottom-0 start-0 p-4" style="z-index: 1060">
+      <div
+        id="emailToast"
+        class="toast border-2 border-ink shadow-2xl"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header bg-ink text-on-ink border-b border-paper/20 font-mono text-xs">
+          <span class="w-2 h-2 rounded-full bg-orange me-2"></span>
+          <strong class="me-auto text-orange">SISTEM KONTAK</strong>
+          <small class="text-on-ink/60">Tersalin</small>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="toast"
+            aria-label="Tutup notifikasi"
+          ></button>
+        </div>
+        <div class="toast-body font-mono text-xs text-on-ink bg-ink">
+          Alamat email (arrxz.dev@gmail.com) berhasil disalin ke clipboard!
+        </div>
+      </div>
+    </div>
   </body>
 </html>

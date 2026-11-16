@@ -1,107 +1,113 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #14171F;
-  --color-surface: #1B202B;
-  --color-surface-2: #232937;
-  --color-line: #2A2F3A;
-  --color-ink: #ECE7D8;
-  --color-ink-muted: #8E95A5;
-  --color-accent: #E8604F;
-  --color-accent-hover: #FF7563;
-  --color-accent-ink: #14171F;
-  --color-danger: #E8604F;
+:root {
+  --paper: #F4EEE2;
+  --sand: #E6D5B7;
+  --ink: #161412;
+  --ink-soft: #5E574E;
+  --line: rgba(22, 20, 18, 0.18);
+  --orange: #F54F1B;
+  --orange-deep: #C2380C;
+  --on-ink: #F4EEE2;
+}
 
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+@theme {
+  --color-paper: var(--paper);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+  --color-on-ink: var(--on-ink);
+
+  --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-/* Base Dark & Light Theme Variables */
-:root {
-  --color-bg: #14171F;
-  --color-surface: #1B202B;
-  --color-surface-2: #232937;
-  --color-line: #2A2F3A;
-  --color-ink: #ECE7D8;
-  --color-ink-muted: #8E95A5;
-  --color-accent: #E8604F;
-  --color-accent-hover: #FF7563;
-  --color-accent-ink: #14171F;
-  --color-danger: #E8604F;
-}
-
-html.light,
-[data-theme="light"] {
-  --color-bg: #F3EEE2;
-  --color-surface: #EAE3D2;
-  --color-surface-2: #DFD6C3;
-  --color-line: #D9D2C0;
-  --color-ink: #1B2A4A;
-  --color-ink-muted: #5B6882;
-  --color-accent: #C8372D;
-  --color-accent-hover: #A72B22;
-  --color-accent-ink: #FFFFFF;
-  --color-danger: #C8372D;
-}
-
-/* Base Body Setup: Paper Texture & Coordinate Grid */
-body {
-  background-color: var(--color-bg);
-  color: var(--color-ink);
+/* Base Body Setup (Editorial Paper) */
+html {
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
-  overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
-  background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
-  background-size: 28px 28px;
+  scroll-behavior: smooth;
 }
 
-/* Coordinate Crossmarks & Technical Rulers */
-.plotter-grid-border {
-  border: 1px solid var(--color-line);
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* Interaction Affordances (R-39) */
+a[href],
+button,
+summary,
+select,
+label[for],
+input[type="checkbox"],
+input[type="radio"],
+[role="button"] {
+  cursor: pointer;
+}
+
+:disabled,
+[disabled] {
+  cursor: not-allowed;
+}
+
+/* Focus Visible (R-32) */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Photo Treatment (Grayscale on Sand, Multiply blend, Color on Hover) */
+.photo-sand {
+  background-color: var(--sand);
+  overflow: hidden;
   position: relative;
 }
 
-.plotter-grid-border::before {
-  content: "+";
-  position: absolute;
-  top: -8px;
-  left: -6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-accent);
-  line-height: 1;
+.photo-sand img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: multiply;
+  transition: filter 0.3s ease;
 }
 
-.plotter-grid-border::after {
-  content: "+";
-  position: absolute;
-  bottom: -8px;
-  right: -6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-accent);
-  line-height: 1;
+.photo-sand:hover img {
+  filter: grayscale(0) contrast(1);
 }
 
-/* Single-stroke SVG drawing classes */
-.single-stroke-path {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-miterlimit: 10;
+/* Bootstrap Overrides for Paper/Ink Editorial Theme */
+.modal {
+  --bs-modal-bg: var(--paper);
+  --bs-modal-color: var(--ink);
+  --bs-modal-border-color: var(--ink);
+  --bs-modal-border-radius: 0;
 }
 
-/* Subtle Ink Sweep Page Transition Overlay */
-#ink-sweep-curtain {
-  position: fixed;
-  inset: 0;
-  background-color: var(--color-bg);
-  z-index: 99999;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(100%);
+.modal-backdrop.show {
+  opacity: 0.6;
+}
+
+.toast {
+  --bs-toast-bg: var(--ink);
+  --bs-toast-color: var(--on-ink);
+  --bs-toast-border-radius: 0;
 }
 
 /* Lenis Integration */
@@ -122,40 +128,14 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Focus Visible */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-
-/* Plotter Panel */
-.plotter-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  transition: border-color 0.2s ease;
-}
-
-.plotter-card:hover {
-  border-color: var(--color-ink-muted);
-}
-
-/* Bootstrap Light Mode Close Button Adjustment */
-html.light .btn-close-white {
-  filter: invert(1) grayscale(100%) brightness(20%) !important;
-}
-
-/* Reduced Motion Override */
+/* Reduced Motion Override (R-39) */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  .single-stroke-path {
-    stroke-dashoffset: 0 !important;
-  }
-  #ink-sweep-curtain {
-    display: none !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
