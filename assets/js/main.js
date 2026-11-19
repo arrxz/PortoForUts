@@ -169,7 +169,7 @@ barba.init({
         .fromTo('.panel-label', { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: 'power4.out' }, '-=0.15');
     },
     enter() {
-      lenis ? lenis.scrollTo(0, { immediate: true }) : window.scrollTo(0, 0);
+      window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true });
       if (reduceMotion) return;
       return gsap.timeline({ delay: 0.25 })
         .to('.panel-label', { yPercent: -110, duration: 0.4, ease: 'power3.in' })
@@ -180,10 +180,12 @@ barba.init({
 });
 
 // New container is in the DOM but still under the panel: set hidden states now, play as the panel lifts (~0.6s).
-barba.hooks.beforeEnter(({ next }) => {
+barba.hooks.beforeEnter(({ current, next }) => {
+  // Barba only removes the old container after `enter`; hide it now or it shows under the lifting panel.
+  current.container.style.display = 'none';
   ctx?.revert();
   setActiveNav(next.namespace);
-  lenis ? lenis.scrollTo(0, { immediate: true }) : window.scrollTo(0, 0);
+  window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true });
   ctx = initPage(next.container, 0.6);
 });
 
