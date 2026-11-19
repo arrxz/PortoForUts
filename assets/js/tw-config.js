@@ -6,6 +6,8 @@ tailwind.config = {
   important: true,
   theme: {
     extend: {
+      // Desktop screen tall enough for the home bento to fit without scrolling (mirrors the media query in style.css).
+      screens: { tall: { raw: '(min-width: 1024px) and (min-height: 680px)' } },
       // Hex mirrors of the :root tokens in style.css — Tailwind needs raw values for opacity modifiers (text-ink/10).
       colors: {
         paper: '#F4EEE2',

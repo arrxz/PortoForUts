@@ -91,6 +91,7 @@ function initPage(scope, start = 0) {
 }
 
 function setActiveNav(namespace) {
+  document.documentElement.classList.toggle('page-home', namespace === 'home');
   document.querySelectorAll('[data-nav]').forEach((a) => {
     if (a.dataset.nav === namespace) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');

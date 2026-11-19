@@ -17,7 +17,7 @@
 <body data-barba="wrapper" class="p-2 md:p-4">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:bg-ink focus:text-on-ink focus:px-4 focus:py-2">Lewati ke konten</a>
 
-  <div class="bg-ink rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 flex flex-col gap-2 md:gap-3 min-h-[calc(100vh-2rem)]">
+  <div class="frame bg-ink rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 flex flex-col gap-2 md:gap-3 min-h-[calc(100vh-2rem)]">
 
     <header class="bento bg-paper px-5 md:px-8 py-4 flex items-center justify-between gap-4">
       <div>
@@ -41,7 +41,7 @@
       </div>
     </header>
 
-    <div class="offcanvas offcanvas-top menu" tabindex="-1" id="menu" aria-labelledby="menu-label">
+    <div class="offcanvas offcanvas-top menu" data-bs-scroll="true" tabindex="-1" id="menu" aria-labelledby="menu-label">
       <div class="flex items-center justify-between px-4 md:px-8 h-16 border-b border-on-ink/20">
         <span id="menu-label" class="font-mono text-xs uppercase tracking-widest text-on-ink/70">Navigasi</span>
         <button type="button" class="rounded-full bg-transparent text-on-ink border border-on-ink/40 font-mono text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-orange hover:text-ink hover:border-orange transition-colors" data-bs-dismiss="offcanvas">Tutup</button>

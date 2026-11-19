@@ -15,6 +15,23 @@
 /* Tailwind preflight is off (Bootstrap reboot owns the base), so borders need a default style to show. */
 *, ::before, ::after { border-width: 0; border-style: solid; border-color: var(--line); }
 
+/* Always reserve the scrollbar's space (both sides, so the frame stays centred):
+   pages/loader/menu toggling scroll never shift the layout sideways. */
+html { scrollbar-gutter: stable both-edges; }
+
+/* Themed scrollbar */
+html::-webkit-scrollbar { width: 10px; }
+html::-webkit-scrollbar-track { background: var(--paper); }
+html::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper); border-radius: 999px; }
+html::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+@supports (-moz-appearance: none) { html { scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); } }
+
+/* Home = one screen on tall desktops (same condition as the Tailwind `tall:` screen) */
+@media (min-width: 1024px) and (min-height: 680px) {
+  html.page-home { overflow: hidden; }
+  html.page-home .frame { height: calc(100vh - 2rem); }
+}
+
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }

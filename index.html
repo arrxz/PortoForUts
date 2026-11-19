@@ -17,7 +17,7 @@
 <body data-barba="wrapper" class="p-2 md:p-4">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:bg-ink focus:text-on-ink focus:px-4 focus:py-2">Lewati ke konten</a>
 
-  <div class="bg-ink rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 flex flex-col gap-2 md:gap-3 min-h-[calc(100vh-2rem)]">
+  <div class="frame bg-ink rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 flex flex-col gap-2 md:gap-3 min-h-[calc(100vh-2rem)]">
 
     <header class="bento bg-paper px-5 md:px-8 py-4 flex items-center justify-between gap-4">
       <div>
@@ -41,7 +41,7 @@
       </div>
     </header>
 
-    <div class="offcanvas offcanvas-top menu" tabindex="-1" id="menu" aria-labelledby="menu-label">
+    <div class="offcanvas offcanvas-top menu" data-bs-scroll="true" tabindex="-1" id="menu" aria-labelledby="menu-label">
       <div class="flex items-center justify-between px-4 md:px-8 h-16 border-b border-on-ink/20">
         <span id="menu-label" class="font-mono text-xs uppercase tracking-widest text-on-ink/70">Navigasi</span>
         <button type="button" class="rounded-full bg-transparent text-on-ink border border-on-ink/40 font-mono text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-orange hover:text-ink hover:border-orange transition-colors" data-bs-dismiss="offcanvas">Tutup</button>
@@ -53,15 +53,15 @@
       </nav>
     </div>
 
-    <main id="main" data-barba="container" data-barba-namespace="home" class="grid gap-2 md:gap-3 lg:grid-cols-12 lg:grid-rows-[auto_1fr] flex-1">
+    <main id="main" data-barba="container" data-barba-namespace="home" class="grid gap-2 md:gap-3 lg:grid-cols-12 lg:grid-rows-[auto_1fr] flex-1 tall:min-h-0">
 
       <!-- Left: profile -->
-      <section class="bento bg-paper lg:col-span-3 lg:row-span-2 flex flex-col overflow-hidden min-h-[30rem]" data-reveal>
+      <section class="bento bg-paper lg:col-span-3 lg:row-span-2 flex flex-col overflow-hidden min-h-[30rem] tall:min-h-0" data-reveal>
         <div class="flex justify-between items-start p-5">
           <h2 class="text-xl font-semibold leading-tight mb-0">Desain produk<br>Web developer<br>Motion</h2>
           <span class="text-2xl" aria-hidden="true">↗</span>
         </div>
-        <div class="photo-sand relative flex-1 min-h-[22rem] mx-2 rounded-[1.25rem] overflow-hidden">
+        <div class="photo-sand relative flex-1 min-h-[22rem] tall:min-h-0 mx-2 rounded-[1.25rem] overflow-hidden">
           <div class="absolute w-56 h-56 blob right-[-12%] top-[10%]" data-float aria-hidden="true"></div>
           <img src="assets/img/profil.webp" alt="Foto profil Agna Aryaputra R." width="900" height="1200" class="absolute inset-0 w-full h-full object-cover object-[50%_100%]">
           <div class="absolute w-14 h-14 orb orb-violet right-[8%] top-[6%]" data-float aria-hidden="true"></div>
@@ -88,9 +88,9 @@
       </div>
 
       <!-- Center: hero -->
-      <section class="bento bg-butter order-first lg:order-none lg:col-span-6 relative overflow-hidden min-h-[34rem] p-6 md:p-8 flex flex-col">
+      <section class="bento bg-butter order-first lg:order-none lg:col-span-6 relative overflow-hidden min-h-[34rem] tall:min-h-0 p-6 md:p-8 tall:p-6 flex flex-col">
         <a href="work.html" aria-label="Lihat karya" class="absolute top-5 right-5 z-10 grid place-items-center w-10 h-10 rounded-full bg-ink text-on-ink hover:bg-orange hover:text-ink transition-colors">↗</a>
-        <h1 class="font-wide text-[17vw] lg:text-[7.4vw] leading-[.85] mb-3">
+        <h1 class="font-wide text-[17vw] lg:text-[7.4vw] tall:text-[min(7.4vw,14vh)] leading-[.85] mb-3">
           <span class="line-mask"><span>DESAIN</span></span>
         </h1>
         <p class="font-medium uppercase text-sm max-w-xs mb-0 relative z-10" data-reveal>Desain &amp; kode untuk brand yang ingin tampil beda</p>
@@ -103,7 +103,7 @@
           <div class="absolute w-40 h-16 pill-tube right-[44%] bottom-[30%] hidden md:block" data-float></div>
         </div>
 
-        <div class="mt-auto relative z-10 max-w-[18rem] md:max-w-xs pt-10">
+        <div class="mt-auto relative z-10 max-w-[18rem] md:max-w-xs pt-10 tall:pt-4">
           <h2 class="font-wide text-base mb-3">KARYA PILIHAN</h2>
           <ul class="list-none p-0 m-0 text-xs">
             <li class="flex justify-between py-1.5 border-b border-ink/25"><a href="work.html" class="hover:underline">Kopi Lereng — E-commerce</a><span class="font-mono">2026</span></li>
@@ -115,7 +115,7 @@
       </section>
 
       <!-- Right: tiles -->
-      <div class="lg:col-span-3 lg:row-span-2 grid grid-cols-2 gap-2 md:gap-3 auto-rows-[minmax(9rem,auto)]">
+      <div class="lg:col-span-3 lg:row-span-2 grid grid-cols-2 gap-2 md:gap-3 auto-rows-[minmax(9rem,auto)] tall:grid-rows-4 tall:min-h-0">
         <div class="bento bg-violet relative overflow-hidden" aria-hidden="true" data-reveal>
           <div class="absolute w-20 h-20 orb orb-orange inset-0 m-auto" data-float></div>
         </div>
@@ -129,7 +129,7 @@
           <span class="font-wide text-xl leading-tight">FRONT<br>END</span>
         </div>
         <div class="bento bg-paper grid place-items-center p-2" data-reveal>
-          <svg viewBox="0 0 120 120" class="w-28 h-28" aria-label="Tachnos, sejak 2026" role="img">
+          <svg viewBox="0 0 120 120" class="w-28 h-28 tall:w-[11vh] tall:h-[11vh]" aria-label="Tachnos, sejak 2026" role="img">
             <defs><path id="badge-circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
             <g data-spin>
               <text font-family="JetBrains Mono" font-size="9" fill="#161412"><textPath href="#badge-circle" textLength="286" lengthAdjust="spacing">TACHNOS • SEJAK 2026 • TACHNOS • SEJAK 2026 •</textPath></text>
@@ -142,10 +142,10 @@
           <span class="font-mono text-[10px] uppercase text-ink-soft">Basis</span>
           <span class="font-wide text-2xl leading-none">BDG<br><span class="text-sm">ID / GMT+7</span></span>
         </div>
-        <div class="bento bg-paper col-span-2 relative overflow-hidden min-h-[12rem] p-5 flex flex-col justify-end" data-reveal>
+        <div class="bento bg-paper col-span-2 relative overflow-hidden min-h-[12rem] tall:min-h-0 p-5 tall:p-4 flex flex-col justify-end" data-reveal>
           <div class="absolute w-20 h-20 blob blob-violet right-3 top-3" data-float aria-hidden="true"></div>
           <span class="font-mono text-[10px] uppercase text-ink-soft mb-1">Tentang</span>
-          <p class="font-semibold leading-snug mb-0 max-w-[14rem] relative">Baru memulai, serius di detail — membangun web yang rapi, cepat, dan hidup.</p>
+          <p class="font-semibold leading-snug tall:text-sm mb-0 max-w-[14rem] relative">Baru memulai, serius di detail — membangun web yang rapi, cepat, dan hidup.</p>
         </div>
       </div>
     </main>
