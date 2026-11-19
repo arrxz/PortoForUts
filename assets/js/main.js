@@ -159,13 +159,18 @@ barba.init({
   preventRunning: true,
   transitions: [{
     name: 'panel-wipe',
-    leave({ next }) {
+    leave({ current, next }) {
       if (reduceMotion) return;
       const file = next.url.path.split('/').pop();
       panel.querySelector('.panel-label').textContent = pageLabels[file] ?? '';
       dotsBounce = gsap.to('.panel-dots i', { y: -14, duration: 0.3, ease: 'power1.out', yoyo: true, repeat: -1, stagger: 0.1 });
+      // Old cards fold away upward (reverse of their entrance) before the panel covers the screen.
+      const oldCards = current.container.querySelectorAll('.bento');
       return gsap.timeline()
-        .to(panel, { yPercent: 0, duration: 0.6, ease: 'power3.inOut' })
+        .fromTo(oldCards,
+          { clipPath: 'inset(0% 0% 0% 0% round 1.5rem)' },
+          { clipPath: 'inset(0% 0% 100% 0% round 1.5rem)', y: -40, duration: 0.5, ease: 'power3.in', stagger: 0.04, overwrite: true })
+        .to(panel, { yPercent: 0, duration: 0.6, ease: 'power3.inOut' }, '-=0.2')
         .fromTo('.panel-label', { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: 'power4.out' }, '-=0.15');
     },
     enter() {
@@ -182,7 +187,8 @@ barba.init({
 // New container is in the DOM but still under the panel: set hidden states now, play as the panel lifts (~0.6s).
 barba.hooks.beforeEnter(({ current, next }) => {
   // Barba only removes the old container after `enter`; hide it now or it shows under the lifting panel.
-  current.container.style.display = 'none';
+  // !important: Tailwind runs with important:true, so the container's `grid`/`flex` class would beat a plain inline style.
+  current.container.style.setProperty('display', 'none', 'important');
   ctx?.revert();
   setActiveNav(next.namespace);
   window.scrollTo(0, 0); lenis?.scrollTo(0, { immediate: true, force: true });
