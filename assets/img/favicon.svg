@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Same stops as .blob in style.css -->
+    <radialGradient id="fill" cx="30%" cy="25%" r="80%">
+      <stop offset="0" stop-color="#FFB08F"/>
+      <stop offset=".45" stop-color="#F54F1B"/>
+      <stop offset="1" stop-color="#C2380C"/>
+    </radialGradient>
+    <radialGradient id="shade" cx="75%" cy="80%" r="55%">
+      <stop offset="0" stop-color="#161412" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#161412" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path id="b" d="M36 5C52 7 61 20 59 35C57 51 44 61 29 59C14 57 3 46 5 30C7 15 21 3 36 5Z" fill="url(#fill)"/>
+  <path d="M36 5C52 7 61 20 59 35C57 51 44 61 29 59C14 57 3 46 5 30C7 15 21 3 36 5Z" fill="url(#shade)"/>
+  <ellipse cx="22" cy="18" rx="7" ry="4.5" fill="#fff" fill-opacity=".65" transform="rotate(-25 22 18)"/>
+</svg>
