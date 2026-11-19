@@ -42,28 +42,43 @@ function splitChars(el) {
   return el.querySelectorAll('.char');
 }
 
-function initPage(scope) {
+// Card entrance: the card "opens" upward from its bottom edge while rising.
+const CARD_HIDDEN = { clipPath: 'inset(100% 0% 0% 0% round 1.5rem)', y: 70 };
+const CARD_SHOWN = { clipPath: 'inset(0% 0% 0% 0% round 1.5rem)', y: 0, duration: 1.15, ease: 'expo.out', clearProps: 'clipPath,transform' };
+
+// `start` = seconds to wait before playing, so hidden states can be set while a cover (loader/panel) is still up.
+function initPage(scope, start = 0) {
   return gsap.context(() => {
     if (reduceMotion) return;
+
+    // Cards already on screen play right away (in order); the rest wait for scroll.
+    const inView = (el) => el.getBoundingClientRect().top < innerHeight * 0.95;
+    const cards = gsap.utils.toArray('.bento');
+    gsap.set(cards, CARD_HIDDEN);
+    gsap.to(cards.filter(inView), { ...CARD_SHOWN, stagger: 0.09, delay: start });
+    const later = cards.filter((el) => !inView(el));
+    if (later.length) ScrollTrigger.batch(later, { start: 'top 95%', once: true, onEnter: (els) => gsap.to(els, { ...CARD_SHOWN, stagger: 0.09 }) });
 
     // Headline: letters tip up from below the mask, one after another.
     scope.querySelectorAll('.line-mask > span').forEach((line, i) => {
       gsap.from(splitChars(line), {
         yPercent: 120, rotationX: -60, opacity: 0, transformPerspective: 1200, transformOrigin: '50% 100%',
-        duration: 1.2, ease: 'expo.out', stagger: 0.035, delay: 0.1 + i * 0.12,
+        duration: 1.2, ease: 'expo.out', stagger: 0.035, delay: start + 0.35 + i * 0.12,
       });
     });
 
     // Cards: reveal in small staggered batches as they enter the viewport.
-    gsap.set('[data-reveal]', { opacity: 0 });
-    ScrollTrigger.batch('[data-reveal]', {
-      start: 'top 92%', once: true,
-      onEnter: (els) => gsap.fromTo(els, { y: 36, scale: 0.97, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1, ease: 'expo.out', stagger: 0.08, overwrite: true }),
-    });
+    // Smaller bits inside cards (subtitle, email, lists) fade up after their card.
+    const bits = gsap.utils.toArray('[data-reveal]').filter((el) => !el.classList.contains('bento') && !el.querySelector('.bento'));
+    const BIT_SHOWN = { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.08 };
+    gsap.set(bits, { y: 24, opacity: 0 });
+    gsap.to(bits.filter(inView), { ...BIT_SHOWN, delay: start + 0.45 });
+    const laterBits = bits.filter((el) => !inView(el));
+    if (laterBits.length) ScrollTrigger.batch(laterBits, { start: 'top 95%', once: true, onEnter: (els) => gsap.to(els, { ...BIT_SHOWN, delay: 0.3 }) });
 
     // Orbs pop in, then drift slowly.
     gsap.utils.toArray('[data-float]').forEach((el, i) => {
-      gsap.from(el, { scale: 0, duration: 1.1, ease: 'back.out(1.6)', delay: 0.35 + i * 0.06 });
+      gsap.from(el, { scale: 0, duration: 1.1, ease: 'back.out(1.6)', delay: start + 0.6 + i * 0.06 });
       gsap.to(el, {
         y: 'random(-14, 14)', rotation: 'random(-6, 6)',
         duration: 'random(3.5, 6)', ease: 'sine.inOut', yoyo: true, repeat: -1,
@@ -120,12 +135,16 @@ function runLoader() {
   });
   const loaded = document.readyState === 'complete' ? Promise.resolve() : new Promise((r) => addEventListener('load', r, { once: true }));
   return Promise.all([counting, loaded])
-    .then(() => gsap.to(loader, { yPercent: -100, duration: 0.9, ease: 'power4.inOut' }))
+    .then(() => {
+      ctx = initPage(firstContainer, 0.45);
+      gsap.fromTo('header, footer', CARD_HIDDEN, { ...CARD_SHOWN, stagger: 0.1, delay: 0.4 });
+      return gsap.to(loader, { yPercent: -100, duration: 0.9, ease: 'power4.inOut' });
+    })
     .then(() => { bounce.kill(); loader.remove(); lenis?.start(); });
 }
 
 runLoader().then(() => {
-  ctx = initPage(firstContainer);
+  if (reduceMotion) ctx = initPage(firstContainer);
   if (!menuSeen && !reduceMotion) {
     gsap.fromTo('.menu-btn', { rotation: 0 }, { rotation: -5, duration: 0.1, yoyo: true, repeat: 5, delay: 1.5, ease: 'power1.inOut', clearProps: 'transform' });
   }
@@ -159,12 +178,12 @@ barba.init({
   }],
 });
 
+// New container is in the DOM but still under the panel: set hidden states now, play as the panel lifts (~0.6s).
 barba.hooks.beforeEnter(({ next }) => {
   ctx?.revert();
   setActiveNav(next.namespace);
+  lenis ? lenis.scrollTo(0, { immediate: true }) : window.scrollTo(0, 0);
+  ctx = initPage(next.container, 0.6);
 });
 
-barba.hooks.after(({ next }) => {
-  ctx = initPage(next.container);
-  ScrollTrigger.refresh();
-});
+barba.hooks.after(() => ScrollTrigger.refresh());
