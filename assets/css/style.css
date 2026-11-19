@@ -1,204 +1,121 @@
-/* ==========================================================================
-   PORTFOLIO STYLESHEET — Dark Tech
-   Tailwind (90%) + Bootstrap (10%) + GSAP + Lenis + Barba + React Bits
-   ========================================================================== */
-
-/* --------------------------------------------------
-   1. LENIS SMOOTH SCROLL STYLES
-   -------------------------------------------------- */
-html.lenis,
-html.lenis body {
-  height: auto;
+:root {
+  --paper: #F4EEE2;
+  --sand: #E6D5B7;
+  --ink: #161412;
+  --ink-soft: #5E574E;
+  --line: rgba(22, 20, 18, 0.18);
+  --orange: #F54F1B;
+  --orange-deep: #C2380C;
+  --on-ink: #F4EEE2;
+  --violet: #6C4CF5;      /* accent from reference: orbs, tiles */
+  --violet-deep: #4B2FD1;
+  --butter: #F7C948;      /* accent from reference: hero cards */
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
+/* Tailwind preflight is off (Bootstrap reboot owns the base), so borders need a default style to show. */
+*, ::before, ::after { border-width: 0; border-style: solid; border-color: var(--line); }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
-/* --------------------------------------------------
-   2. TYPOGRAPHY & ESSENTIAL DEFAULTS
-   -------------------------------------------------- */
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #0D1117;
-  color: #E6EDF3;
-  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Inter Tight", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.02em;
-}
-
-.font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-
-/* --------------------------------------------------
-   3. BARBA.JS TRANSITION CURTAIN
-   -------------------------------------------------- */
-.transition-curtain {
+/* Warm paper grain */
+body::after {
+  content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #161B22;
-  z-index: 99999;
+  inset: 0;
   pointer-events: none;
-  transform: scaleY(0);
-  transform-origin: bottom center;
-  border-top: 2px solid #2DD4BF;
-  box-shadow: 0 -10px 40px rgba(45, 212, 191, 0.2);
+  z-index: 90;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* --------------------------------------------------
-   4. REACT BITS — SPOTLIGHT CARD
-   Glow following cursor coordinates (--mouse-x, --mouse-y)
-   -------------------------------------------------- */
-.spotlight-card {
-  position: relative;
-  border-radius: 0.75rem;
-  background: #161B22;
-  border: 1px solid #30363D;
-  overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-}
+::selection { background: var(--orange); color: var(--ink); }
 
-.spotlight-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
-    rgba(45, 212, 191, 0.12),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 2;
-}
+a { color: inherit; text-decoration: none; }
+a:hover { color: inherit; }
 
-.spotlight-card:hover::before {
-  opacity: 1;
-}
+:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 3px; }
 
-.spotlight-card:hover {
-  border-color: rgba(45, 212, 191, 0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(45, 212, 191, 0.15);
-}
+.photo-sand { background: var(--sand); }
 
-/* --------------------------------------------------
-   5. REACT BITS — SHINY TEXT / SHIMMER
-   -------------------------------------------------- */
-.shiny-text {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(45, 212, 191, 1) 40%,
-    rgba(255, 255, 255, 0.9) 60%,
-    rgba(45, 212, 191, 0.7) 100%
-  );
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shine 4s linear infinite;
-}
+/* Wide heavy grotesk for headlines */
+.font-wide { font-family: "Archivo", "Inter Tight", sans-serif; font-stretch: 125%; font-weight: 900; letter-spacing: -.02em; }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
-}
+/* Bento card (not .card: Bootstrap owns that name) */
+.bento { border-radius: 1.5rem; }
 
-/* --------------------------------------------------
-   6. REACT BITS — MAGNET BUTTON (GSAP driven)
-   -------------------------------------------------- */
-.magnet-target {
-  display: inline-block;
-  will-change: transform;
-}
-
-/* --------------------------------------------------
-   7. PULSE STATUS DOT & MISC UTILITIES
-   -------------------------------------------------- */
-.status-dot {
-  width: 8px;
-  height: 8px;
+/* CSS "3D" orbs — swap for real renders/photos later */
+.orb {
   border-radius: 50%;
-  background-color: #2DD4BF;
-  box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
-  animation: statusPulse 2s infinite;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,.9) 0 5%, rgba(255,255,255,0) 24%),
+    radial-gradient(circle at 45% 40%, var(--c1) 0 40%, var(--c2) 100%);
+  box-shadow: inset -14px -20px 34px rgba(22,20,18,.28), 0 30px 40px -22px rgba(22,20,18,.55);
+}
+.orb-orange { --c1: #FF7A45; --c2: var(--orange-deep); }
+.orb-ink    { --c1: #4a423a; --c2: var(--ink); }
+.orb-sand   { --c1: #FBF0DA; --c2: #C4AC82; }
+.orb-paper  { --c1: #FFFFFF; --c2: #CFC4B0; }
+.orb-violet { --c1: #8E74FF; --c2: var(--violet-deep); }
+.blob {
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  background: radial-gradient(circle at 30% 25%, #FFB08F 0 10%, var(--orange) 45%, var(--orange-deep) 100%);
+  box-shadow: inset -18px -24px 40px rgba(22,20,18,.25), 0 30px 50px -25px rgba(22,20,18,.5);
+}
+.blob-violet { background: radial-gradient(circle at 30% 25%, #B9A8FF 0 10%, var(--violet) 45%, var(--violet-deep) 100%); }
+.pill-tube {
+  border-radius: 999px;
+  background: linear-gradient(160deg, #FBF0DA, #C4AC82);
+  box-shadow: inset -8px -10px 20px rgba(22,20,18,.2), 0 20px 30px -18px rgba(22,20,18,.5);
 }
 
-@keyframes statusPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(45, 212, 191, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
-  }
+/* Menu trigger: two bars that swap length on hover, plus an attention ping until first open */
+.menu-bars { display: grid; gap: 4px; }
+.menu-bars i { display: block; height: 2px; width: 16px; border-radius: 2px; background: var(--orange); transition: width .3s ease; }
+.menu-bars i:last-child { width: 10px; justify-self: end; }
+.menu-btn:hover .menu-bars i:first-child { width: 10px; }
+.menu-btn:hover .menu-bars i:last-child { width: 16px; }
+.menu-ping::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; background: var(--violet); animation: menu-ping 1.6s cubic-bezier(0, 0, .2, 1) infinite; }
+@keyframes menu-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+.menu-seen .menu-ping { display: none; }
+@media (prefers-reduced-motion: reduce) { .menu-ping::after { animation: none; } }
+
+.barcode { background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px); }
+
+/* Extra room above/below (cancelled by negative margin) so tight line-heights don't clip glyphs mid-animation */
+.line-mask { display: block; overflow: hidden; padding: .18em 0 .08em; margin: -.18em 0 -.02em; }
+.line-mask > span { display: block; }
+.word { display: inline-block; white-space: nowrap; }
+.char { display: inline-block; will-change: transform, opacity; }
+
+.transition-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--orange);
+  transform: translateY(100%);
+  pointer-events: none;
 }
 
-/* Nav Link Hover Underline */
-.nav-link-custom {
-  position: relative;
-  transition: color 0.2s ease;
-}
+/* Failsafe: if JS never runs the loader off, hide it anyway so the site stays usable */
+.loader { animation: loader-failsafe 0s 8s forwards; }
+@keyframes loader-failsafe { to { visibility: hidden; } }
+.panel-dots i { display: block; }
 
-.nav-link-custom::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #2DD4BF;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 2px;
+/* Bootstrap offcanvas, reskinned as the full-screen menu */
+.offcanvas.menu {
+  --bs-offcanvas-height: 100vh;
+  --bs-offcanvas-bg: var(--ink);
+  --bs-offcanvas-color: var(--on-ink);
+  --bs-offcanvas-transition: transform .6s cubic-bezier(.76, 0, .24, 1);
 }
-
-.nav-link-custom:hover::after,
-.nav-link-custom.active::after {
-  transform: scaleX(1);
-}
-
-/* Focus Visible Accessibility */
-:focus-visible {
-  outline: 2px solid #2DD4BF;
-  outline-offset: 3px;
-}
-
-/* Reduced Motion Override */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
+.menu a[aria-current="page"] { color: var(--orange); }

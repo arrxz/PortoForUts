@@ -1,12 +1,123 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/#kontak" />
-    <title>Redirecting...</title>
-    <script>window.location.replace('/#kontak');</script>
-  </head>
-  <body>
-    <p>Mengalihkan ke <a href="/#kontak">Kontak</a>...</p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontak — Agna Aryaputra R.</title>
+  <meta name="description" content="Agna Aryaputra R. — Front End Developer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script src="assets/js/tw-config.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><style>.loader{display:none}</style></noscript>
+</head>
+<body data-barba="wrapper" class="p-2 md:p-4">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:bg-ink focus:text-on-ink focus:px-4 focus:py-2">Lewati ke konten</a>
+
+  <div class="bg-ink rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 flex flex-col gap-2 md:gap-3 min-h-[calc(100vh-2rem)]">
+
+    <header class="bento bg-paper px-5 md:px-8 py-4 flex items-center justify-between gap-4">
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-ink-soft mb-1">Portofolio front end developer</p>
+        <a href="index.html" class="font-wide text-4xl md:text-6xl leading-none">Agna<span class="text-orange text-2xl md:text-4xl align-top ms-1">®</span></a>
+      </div>
+      <div class="flex items-center gap-3 md:gap-5">
+        <button type="button" class="menu-btn relative flex items-center gap-3 rounded-full bg-orange text-ink ps-5 pe-1.5 py-1.5 font-wide text-sm uppercase shadow-[0_5px_0_0_#161412] hover:shadow-[0_1px_0_0_#161412] hover:translate-y-1 transition-all" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu">
+          <span class="menu-ping absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-violet border-2 border-paper" aria-hidden="true"></span>
+          Menu
+          <span class="grid place-items-center w-9 h-9 rounded-full bg-ink" aria-hidden="true"><span class="menu-bars"><i></i><i></i></span></span>
+        </button>
+        <span class="hidden md:flex items-center gap-3 rounded-full bg-ink text-on-ink ps-5 pe-1.5 py-1.5 font-wide text-sm uppercase">Status : <span class="grid place-items-center h-9 px-3 rounded-full bg-orange text-ink font-mono text-xs">WFH</span></span>
+        <div class="hidden xl:block" aria-hidden="true">
+          <div class="flex items-end gap-1 mb-1">
+            <span class="w-6 h-4 bg-ink"></span><span class="w-6 h-4 bg-ink-soft"></span><span class="w-6 h-4 bg-orange"></span><span class="w-6 h-4 bg-sand"></span><span class="w-6 h-4 bg-violet"></span><span class="w-6 h-4 bg-butter"></span>
+            <span class="ms-2 font-mono text-[9px] uppercase">Palette</span>
+          </div>
+          <div class="flex items-center gap-2"><span class="barcode w-16 h-5"></span><span class="font-wide text-lg leading-none">TACH<span class="text-orange">NOS</span></span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="offcanvas offcanvas-top menu" tabindex="-1" id="menu" aria-labelledby="menu-label">
+      <div class="flex items-center justify-between px-4 md:px-8 h-16 border-b border-on-ink/20">
+        <span id="menu-label" class="font-mono text-xs uppercase tracking-widest text-on-ink/70">Navigasi</span>
+        <button type="button" class="rounded-full bg-transparent text-on-ink border border-on-ink/40 font-mono text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-orange hover:text-ink hover:border-orange transition-colors" data-bs-dismiss="offcanvas">Tutup</button>
+      </div>
+      <nav class="offcanvas-body flex flex-col justify-center gap-2 px-4 md:px-8">
+        <a href="index.html" data-nav="home" class="font-wide uppercase text-5xl md:text-8xl leading-tight hover:text-orange transition-colors">Beranda</a>
+        <a href="work.html" data-nav="work" class="font-wide uppercase text-5xl md:text-8xl leading-tight hover:text-orange transition-colors">Karya</a>
+        <a href="contact.html" data-nav="contact" class="font-wide uppercase text-5xl md:text-8xl leading-tight hover:text-orange transition-colors">Kontak</a>
+      </nav>
+    </div>
+    <main id="main" data-barba="container" data-barba-namespace="contact" class="grid gap-2 md:gap-3 lg:grid-cols-12 flex-1">
+      <section class="bento bg-orange text-ink lg:col-span-8 lg:row-span-2 relative overflow-hidden p-6 md:p-8 min-h-[28rem] flex flex-col justify-between">
+        <div class="absolute w-40 h-40 md:w-64 md:h-64 orb orb-sand right-[-3%] top-[8%]" data-float aria-hidden="true"></div>
+        <div class="absolute w-20 h-20 orb orb-violet right-[28%] bottom-[18%] hidden md:block" data-float aria-hidden="true"></div>
+        <p class="font-mono text-[10px] uppercase tracking-widest mb-0 relative">Kontak</p>
+        <div class="relative">
+          <h1 class="font-wide text-[18vw] lg:text-[10vw] leading-[.85] mb-6"><span class="line-mask"><span>HALO!</span></span></h1>
+          <a href="mailto:agnaaryp@gmail.com" class="inline-flex items-center gap-4 rounded-full bg-ink text-on-ink ps-6 pe-2 py-2 text-lg md:text-2xl hover:bg-paper hover:text-ink transition-colors" data-reveal>agnaaryp@gmail.com <span class="grid place-items-center w-10 h-10 rounded-full bg-orange text-ink" aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <div class="bento bg-paper lg:col-span-4 p-6 flex flex-col justify-between min-h-[13rem]" data-reveal>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-ink-soft mb-0">Sosial</p>
+        <ul class="list-none p-0 m-0 flex flex-wrap gap-2">
+          <li><a href="#" class="block rounded-full border border-ink px-5 py-2 hover:bg-ink hover:text-on-ink transition-colors">Instagram</a></li>
+          <li><a href="#" class="block rounded-full border border-ink px-5 py-2 hover:bg-ink hover:text-on-ink transition-colors">LinkedIn</a></li>
+          <li><a href="#" class="block rounded-full border border-ink px-5 py-2 hover:bg-ink hover:text-on-ink transition-colors">GitHub</a></li>
+          <li><a href="#" class="block rounded-full border border-ink px-5 py-2 hover:bg-ink hover:text-on-ink transition-colors">Dribbble</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-4 grid grid-cols-2 gap-2 md:gap-3">
+        <div class="bento bg-butter p-5 flex flex-col justify-between min-h-[13rem]" data-reveal>
+          <span class="font-mono text-[10px] uppercase text-ink">Lokasi</span>
+          <span class="font-wide text-2xl leading-none">BDG<br><span class="text-sm">ID / GMT+7</span></span>
+        </div>
+        <div class="bento bg-ink text-on-ink border border-on-ink/15 p-5 flex flex-col justify-between" data-reveal>
+          <span class="font-mono text-[10px] uppercase text-on-ink/70">Respon</span>
+          <span class="font-wide text-2xl leading-none">1–2<br><span class="text-sm">hari kerja</span></span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bento bg-paper px-5 md:px-8 py-4 flex flex-wrap items-center justify-between gap-3">
+      <span class="font-mono text-[10px] uppercase tracking-widest text-ink-soft">© 2026 Agna Aryaputra R. — Bandung, ID</span>
+      <a href="contact.html" class="flex items-center gap-3 rounded-full bg-orange text-ink ps-5 pe-1.5 py-1.5 font-medium hover:bg-ink hover:text-on-ink transition-colors">Mari bicara <span class="grid place-items-center w-8 h-8 rounded-full bg-ink text-on-ink" aria-hidden="true">↗</span></a>
+    </footer>
+  </div>
+
+  <!-- First-load loader -->
+  <div class="loader fixed inset-0 z-[120] bg-ink text-on-ink flex flex-col justify-between p-6 md:p-10" aria-hidden="true">
+    <div class="flex justify-between font-mono text-xs uppercase tracking-widest text-on-ink/70">
+      <span>TACH<span class="text-orange">NOS</span></span><span>Agna Aryaputra R. — 2026</span>
+    </div>
+    <div class="flex items-end justify-between gap-6">
+      <div class="loader-orbs flex items-end gap-3 pb-4">
+        <span class="orb orb-orange w-8 h-8 md:w-12 md:h-12"></span>
+        <span class="orb orb-violet w-8 h-8 md:w-12 md:h-12"></span>
+        <span class="orb orb-sand w-8 h-8 md:w-12 md:h-12"></span>
+      </div>
+      <span class="font-wide text-[24vw] md:text-[14vw] leading-[.8]"><span class="loader-count">0</span><span class="text-orange">%</span></span>
+    </div>
+    <div class="h-1 rounded-full bg-on-ink/15 overflow-hidden"><div class="loader-bar h-full bg-orange"></div></div>
+  </div>
+
+  <!-- Page-change wipe -->
+  <div class="transition-panel flex items-center justify-center" aria-hidden="true">
+    <div class="flex items-center gap-4 md:gap-6">
+      <span class="panel-dots flex gap-2"><i class="orb orb-ink w-4 h-4 md:w-6 md:h-6"></i><i class="orb orb-violet w-4 h-4 md:w-6 md:h-6"></i><i class="orb orb-paper w-4 h-4 md:w-6 md:h-6"></i></span>
+      <span class="line-mask"><span class="panel-label block font-wide text-ink text-[16vw] md:text-[10vw] leading-none"></span></span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
